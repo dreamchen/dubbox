@@ -15,42 +15,48 @@
  */
 package com.alibaba.dubbo.monitor.dubbo;
 
-import java.io.Serializable;
-
 import com.alibaba.dubbo.common.URL;
 import com.alibaba.dubbo.monitor.MonitorService;
 
+import java.io.Serializable;
+
 /**
  * Statistics. (SPI, Prototype, ThreadSafe)
- * 
+ *
  * @author william.liangf
  */
 public class Statistics implements Serializable {
-    
+
     private static final long serialVersionUID = -6921183057683641441L;
-    
+
     private URL url;
-    
+
     private String application;
-    
+
+    private String organization;
+
+    private String owner;
+
     private String service;
 
     private String method;
-    
+
     private String group;
 
     private String version;
-    
+
     private String client;
-    
+
     private String server;
 
     public Statistics(URL url) {
         this.url = url;
         this.application = url.getParameter(MonitorService.APPLICATION);
+        this.organization = url.getParameter(MonitorService.ORGANIZATION);
+        this.owner = url.getParameter(MonitorService.OWNER);
         this.service = url.getParameter(MonitorService.INTERFACE);
         this.method = url.getParameter(MonitorService.METHOD);
-        this.group = url.getParameter(MonitorService.GROUP);
+        this.group = url.getParameter(MonitorService.GROUP, "-");
         this.version = url.getParameter(MonitorService.VERSION);
         this.client = url.getParameter(MonitorService.CONSUMER, url.getAddress());
         this.server = url.getParameter(MonitorService.PROVIDER, url.getAddress());
@@ -71,6 +77,22 @@ public class Statistics implements Serializable {
     public Statistics setApplication(String application) {
         this.application = application;
         return this;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getService() {
@@ -130,6 +152,8 @@ public class Statistics implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((application == null) ? 0 : application.hashCode());
+        result = prime * result + ((organization == null) ? 0 : organization.hashCode());
+        result = prime * result + ((owner == null) ? 0 : owner.hashCode());
         result = prime * result + ((client == null) ? 0 : client.hashCode());
         result = prime * result + ((group == null) ? 0 : group.hashCode());
         result = prime * result + ((method == null) ? 0 : method.hashCode());
@@ -152,6 +176,16 @@ public class Statistics implements Serializable {
             if (other.application != null)
                 return false;
         } else if (!application.equals(other.application))
+            return false;
+        if (organization == null) {
+            if (other.organization != null)
+                return false;
+        } else if (!organization.equals(other.organization))
+            return false;
+        if (owner == null) {
+            if (other.owner != null)
+                return false;
+        } else if (!owner.equals(other.owner))
             return false;
         if (client == null) {
             if (other.client != null)

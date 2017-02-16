@@ -50,7 +50,7 @@
 		<module>dubbo</module>
 		<!--<module>dubbo-simple</module>-->
 		<!--<module>dubbo-admin</module>-->
-		<module>dubbo-demo</module>
+		<!--<module>dubbo-demo</module>-->
 		<module>hessian-lite</module>
 	</modules>
 	<profiles>
@@ -83,6 +83,7 @@
 		<bsf_version>3.1</bsf_version>
 		<sorcerer_version>0.8</sorcerer_version>
 		<zookeeper_version>3.4.8</zookeeper_version>
+		<zkclient_version>0.8.1-SNAPSHOT</zkclient_version>
 		<curator_version>2.5.0</curator_version>
 		<jedis_version>2.1.0</jedis_version>
 		<xmemcached_version>1.3.6</xmemcached_version>
@@ -103,7 +104,7 @@
 		<sca_version>2.0-M5.1</sca_version>
 		<guice_version>3.0</guice_version>
 		<cglib_version>2.2</cglib_version>
-		<webx_version>3.1.6</webx_version>
+		<webx_version>3.2.4</webx_version>
 		<jackson_version>2.7.1</jackson_version>
 
         <commons_pool_version>1.6</commons_pool_version>
@@ -232,6 +233,11 @@
 				<groupId>org.apache.zookeeper</groupId>
 				<artifactId>zookeeper</artifactId>
 				<version>${zookeeper_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>zkclient</artifactId>
+				<version>${zkclient_version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.curator</groupId>
@@ -707,6 +713,19 @@
 		</developer>
 	</developers>
 
+
+	<distributionManagement>
+		<repository>
+			<id>by-release</id>
+			<name>Releases</name>
+			<url>http://192.168.99.66:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>by-snapshot</id>
+			<name>Snapshots</name>
+			<url>http://192.168.99.66:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 
 </project>

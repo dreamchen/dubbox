@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 
 /**
  * Constants
- * 
+ *
  * @author william.liangf
  */
 public class Constants {
@@ -36,7 +36,7 @@ public class Constants {
     public static final String  SUBSCRIBE                          = "subscribe";
 
     public static final String  UNSUBSCRIBE                        = "unsubscribe";
-    
+
     public static final String  CATEGORY_KEY                       = "category";
 
     public static final String  PROVIDERS_CATEGORY                 = "providers";
@@ -190,6 +190,10 @@ public class Constants {
 
     public static final String  APPLICATION_KEY                    = "application";
 
+    public static final String  ORGANIZATION_KEY                   = "organization";
+
+    public static final String  OWNER_KEY                          = "owner";
+
     public static final String  LOCAL_KEY                          = "local";
 
     public static final String  STUB_KEY                           = "stub";
@@ -309,7 +313,7 @@ public class Constants {
     public static final String  PID_KEY                            = "pid";
 
     public static final String  TIMESTAMP_KEY                      = "timestamp";
-    
+
     public static final String  WARMUP_KEY                         = "warmup";
 
     public static final int     DEFAULT_WARMUP                     = 10 * 60 * 1000;
@@ -459,14 +463,14 @@ public class Constants {
      * 重试周期
      */
     public static final int DEFAULT_REGISTRY_RETRY_PERIOD          =  5 * 1000;
-    
+
     /**
      * 注册中心自动重连时间
      */
     public static final String  REGISTRY_RECONNECT_PERIOD_KEY      = "reconnect.period";
 
     public static final int     DEFAULT_REGISTRY_RECONNECT_PERIOD  = 3 * 1000;
-    
+
     public static final String  SESSION_TIMEOUT_KEY                = "session";
 
     public static final int     DEFAULT_SESSION_TIMEOUT            = 60 * 1000;
@@ -536,7 +540,7 @@ public class Constants {
     public static final String  OVERRIDE_PROTOCOL                  = "override";
 
     public static final String  PRIORITY_KEY                       = "priority";
-    
+
     public static final String  RULE_KEY                           = "rule";
 
     public static final String  TYPE_KEY                           = "type";
@@ -560,17 +564,17 @@ public class Constants {
     public static final String LOCAL_PROTOCOL                      = "injvm";
 
     public static final String AUTO_ATTACH_INVOCATIONID_KEY 	   = "invocationid.autoattach";
-    
+
     public static final String SCOPE_KEY						   = "scope";
-    
+
     public static final String SCOPE_LOCAL						   = "local";
-    
+
     public static final String SCOPE_REMOTE						   = "remote";
-    
+
     public static final String SCOPE_NONE						   = "none";
-    
+
     public static final String RELIABLE_PROTOCOL				   = "napoli";
-    
+
     public static final String TPS_LIMIT_RATE_KEY                  = "tps";
 
     public static final String TPS_LIMIT_INTERVAL_KEY              = "tps.interval";
@@ -580,9 +584,9 @@ public class Constants {
     public static final String DECODE_IN_IO_THREAD_KEY             = "decode.in.io";
 
     public static final boolean DEFAULT_DECODE_IN_IO_THREAD        = true;
-    
+
     public static final String INPUT_KEY                           = "input";
-    
+
     public static final String OUTPUT_KEY                          = "output";
 
     public static final String EXECUTOR_SERVICE_COMPONENT_KEY      = ExecutorService.class.getName();
