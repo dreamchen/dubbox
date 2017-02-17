@@ -67,7 +67,28 @@
 				#if($tool.checkUrl($currentUser,"/governance/owners"))<li><a href="$rootContextPath.getURI("/governance/owners")">$i18n.get("owners")</a></li>#end
 			</ul>
 		</li>
-		<li id="unique_tab3" class="sub_nav"><a href="#" onclick="return false;" style="cursor:default;">$i18n.get("system.management")</a>
+		<li id="unique_tab3" class="sub_nav"><a href="#" onclick="return false;" style="cursor:default;">$i18n.get("monitor")</a>
+			<ul>
+				#if($tool.checkUrl($currentUser,"/governance/services"))<li><a href="$rootContextPath.getURI("/governance/services")">$i18n.get("services")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/applications"))<li><a href="$rootContextPath.getURI("/governance/applications")">$i18n.get("applications")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/addresses"))<li><a href="$rootContextPath.getURI("/governance/addresses")">$i18n.get("addresses")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/providers"))<li><a href="$rootContextPath.getURI("/governance/providers")">$i18n.get("providers")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/consumers"))<li><a href="$rootContextPath.getURI("/governance/consumers")">$i18n.get("consumers")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/routes"))<li><a href="$rootContextPath.getURI("/governance/routes")">$i18n.get("routes")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/overrides"))<li><a href="$rootContextPath.getURI("/governance/overrides")">$i18n.get("overrides")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/accesses"))<li><a href="$rootContextPath.getURI("/governance/accesses")">$i18n.get("accesses")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/weights"))<li><a href="$rootContextPath.getURI("/governance/weights")">$i18n.get("weights")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/loadbalances"))<li><a href="$rootContextPath.getURI("/governance/loadbalances")">$i18n.get("loadbalances")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/owners"))<li><a href="$rootContextPath.getURI("/governance/owners")">$i18n.get("owners")</a></li>#end
+			</ul>
+		</li>
+		<li id="unique_tab4" class="sub_nav"><a href="#" onclick="return false;" style="cursor:default;">$i18n.get("permissions")</a>
+			<ul>
+				#if($tool.checkUrl($currentUser,"/personal/infos"))<li><a href="$rootContextPath.getURI("/personal/infos")">$i18n.get("personal.set")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/permissions/services"))<li><a href="$rootContextPath.getURI("/personal/infos")">$i18n.get("usermanage")</a></li>#end
+			</ul>
+		</li>
+		<li id="unique_tab5" class="sub_nav"><a href="#" onclick="return false;" style="cursor:default;">$i18n.get("system.management")</a>
 			<ul>
 				#if($tool.checkUrl($currentUser,"/sysinfo/versions"))<li><a href="$rootContextPath.getURI("/sysinfo/versions")">$i18n.get("versions")</a></li>#end
 				#if($tool.checkUrl($currentUser,"/sysinfo/dumps"))<li><a href="$rootContextPath.getURI("/sysinfo/dumps")">$i18n.get("dumps")</a></li>#end

@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.dubbo.dal.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.dubbo.registry.common.domain.User" >
+    <id column="uid" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="department" property="seasonStartTime" jdbcType="VARCHAR" />
+    <result column="role" property="seasonEndTime" jdbcType="VARCHAR" />
+    <result column="email" property="seasonTimeLimit" jdbcType="VARCHAR" />
+    <result column="phone" property="createTime" jdbcType="VARCHAR" />
+    <result column="locale" property="operater" jdbcType="VARCHAR" />
+    <result column="service_privilege" property="updateTime" jdbcType="VARCHAR" />
+    <result column="app_privilege" property="seasonStatus" jdbcType="VARCHAR" />
+    <result column="manage_privilege" property="ruleDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="created" jdbcType="TIMESTAMP" />
+    <result column="status" property="seasonDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, username, password, name, department, role,
+    email, phone, locale, service_privilege, app_privilege, manage_privilege, create_time, status,
+  </sql>
+  <!--<sql id="where_Condition">-->
+    <!--<where>-->
+      <!--0=0-->
+      <!--<if test="condition != null">-->
+        <!--<if test="condition.seasonId != null" >-->
+          <!--and season_id = #{condition.seasonId,jdbcType=INTEGER}-->
+        <!--</if>-->
+        <!--<if test="condition.seasonName != null" >-->
+          <!--and season_name = #{condition.seasonName,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.gameName != null" >-->
+          <!--and game_name = #{condition.gameName,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.seasonInitiator != null" >-->
+          <!--and season_initiator = #{condition.seasonInitiator,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.seasonStartTime != null" >-->
+          <!--and season_start_time = #{condition.seasonStartTime,jdbcType=TIMESTAMP}-->
+        <!--</if>-->
+        <!--<if test="condition.seasonEndTime != null" >-->
+          <!--and season_end_time = #{condition.seasonEndTime,jdbcType=TIMESTAMP}-->
+        <!--</if>-->
+        <!--<if test="condition.seasonTimeLimit != null" >-->
+          <!--and season_time_limit = #{condition.seasonTimeLimit,jdbcType=INTEGER}-->
+        <!--</if>-->
+        <!--<if test="condition.createTime != null" >-->
+          <!--and create_time = #{condition.createTime,jdbcType=TIMESTAMP}-->
+        <!--</if>-->
+        <!--<if test="condition.operater != null" >-->
+          <!--and operater = #{condition.operater,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.updateTime != null" >-->
+          <!--and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}-->
+        <!--</if>-->
+        <!--<if test="condition.seasonStatus != null" >-->
+          <!--and season_status = #{condition.seasonStatus,jdbcType=INTEGER}-->
+        <!--</if>-->
+        <!--<if test="condition.ruleDesc != null" >-->
+          <!--and rule_desc = #{condition.ruleDesc,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.redPacketDesc != null" >-->
+          <!--and red_packet_desc = #{condition.redPacketDesc,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.seasonDesc != null" >-->
+          <!--and season_desc = #{condition.seasonDesc,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.shareQrcodeImage != null" >-->
+          <!--and share_qrcode_image = #{condition.shareQrcodeImage,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.friendQrcodeImage != null" >-->
+          <!--and friend_qrcode_image = #{condition.friendQrcodeImage,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.friendMaxNum != null" >-->
+          <!--and friend_max_num = #{condition.friendMaxNum,jdbcType=INTEGER}-->
+        <!--</if>-->
+
+        <!--<if test="condition.withdrawStartTime != null" >-->
+          <!--and withdraw_start_time = #{condition.withdrawStartTime,jdbcType=TIMESTAMP}-->
+        <!--</if>-->
+        <!--<if test="condition.withdrawEndTime != null" >-->
+          <!--and withdraw_end_time = #{condition.withdrawEndTime,jdbcType=TIMESTAMP}-->
+        <!--</if>-->
+        <!--<if test="condition.tagId != null" >-->
+          <!--and tag_id = #{condition.tagId,jdbcType=INTEGER}-->
+        <!--</if>-->
+        <!--<if test="condition.tagName != null" >-->
+          <!--and tag_name = #{condition.tagName,jdbcType=VARCHAR}-->
+        <!--</if>-->
+
+        <!--<if test="condition.reserve1 != null" >-->
+          <!--and reserve1 = #{condition.reserve1,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.reserve2 != null" >-->
+          <!--and reserve2 = #{condition.reserve2,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--<if test="condition.notEqualsSeasonStatus != null" >-->
+          <!--and season_status &lt;&gt; #{condition.notEqualsSeasonStatus,jdbcType=INTEGER}-->
+        <!--</if>-->
+      <!--</if>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<sql id="where_User">-->
+    <!--<where>-->
+      <!--0=0-->
+      <!--<if test="seasonId != null" >-->
+        <!--and season_id = #{seasonId,jdbcType=INTEGER}-->
+      <!--</if>-->
+      <!--<if test="seasonName != null" >-->
+        <!--and season_name = #{seasonName,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="gameName != null" >-->
+        <!--and game_name = #{gameName,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="seasonInitiator != null" >-->
+        <!--and season_initiator = #{seasonInitiator,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="seasonStartTime != null" >-->
+        <!--and season_start_time = #{seasonStartTime,jdbcType=TIMESTAMP}-->
+      <!--</if>-->
+      <!--<if test="seasonEndTime != null" >-->
+        <!--and season_end_time = #{seasonEndTime,jdbcType=TIMESTAMP}-->
+      <!--</if>-->
+      <!--<if test="seasonTimeLimit != null" >-->
+        <!--and season_time_limit = #{seasonTimeLimit,jdbcType=INTEGER}-->
+      <!--</if>-->
+      <!--<if test="createTime != null" >-->
+        <!--and create_time = #{createTime,jdbcType=TIMESTAMP}-->
+      <!--</if>-->
+      <!--<if test="operater != null" >-->
+        <!--and operater = #{operater,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="updateTime != null" >-->
+        <!--and update_time = #{updateTime,jdbcType=TIMESTAMP}-->
+      <!--</if>-->
+      <!--<if test="seasonStatus != null" >-->
+        <!--and season_status = #{seasonStatus,jdbcType=INTEGER}-->
+      <!--</if>-->
+      <!--<if test="ruleDesc != null" >-->
+        <!--and rule_desc = #{ruleDesc,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="redPacketDesc != null" >-->
+        <!--and red_packet_desc = #{redPacketDesc,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="seasonDesc != null" >-->
+        <!--and season_desc = #{seasonDesc,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="shareQrcodeImage != null" >-->
+        <!--and share_qrcode_image = #{shareQrcodeImage,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="friendQrcodeImage != null" >-->
+        <!--and friend_qrcode_image = #{friendQrcodeImage,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="friendMaxNum != null" >-->
+        <!--and friend_max_num = #{friendMaxNum,jdbcType=INTEGER}-->
+      <!--</if>-->
+
+      <!--<if test="withdrawStartTime != null" >-->
+        <!--and withdraw_start_time = #{withdrawStartTime,jdbcType=TIMESTAMP}-->
+      <!--</if>-->
+      <!--<if test="withdrawEndTime != null" >-->
+        <!--and withdraw_end_time = #{withdrawEndTime,jdbcType=TIMESTAMP}-->
+      <!--</if>-->
+      <!--<if test="tagId != null" >-->
+        <!--and tag_id = #{tagId,jdbcType=INTEGER}-->
+      <!--</if>-->
+      <!--<if test="tagName != null" >-->
+        <!--and tag_name = #{tagName,jdbcType=VARCHAR}-->
+      <!--</if>-->
+
+      <!--<if test="reserve1 != null" >-->
+        <!--and reserve1 = #{reserve1,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="reserve2 != null" >-->
+        <!--and reserve2 = #{reserve2,jdbcType=VARCHAR}-->
+      <!--</if>-->
+      <!--<if test="seasonStatusList != null">-->
+        <!--and season_status in-->
+        <!--<foreach item="item" index="index" collection="seasonStatusList" open="(" separator="," close=")">-->
+          <!--#{item}-->
+        <!--</foreach>-->
+      <!--</if>-->
+      <!--<if test="notEqualsSeasonStatus != null" >-->
+        <!--and season_status &lt;&gt; #{notEqualsSeasonStatus,jdbcType=INTEGER}-->
+      <!--</if>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >-->
+    <!--select-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from by_plane_play_season-->
+    <!--where season_id = #{seasonId,jdbcType=INTEGER}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >-->
+    <!--delete from by_plane_play_season-->
+    <!--where season_id = #{seasonId,jdbcType=INTEGER}-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.by.plane.soa.pojo.dubbo.plane.playseason.User" >-->
+    <!--insert into by_plane_play_season (season_id, season_name, game_name, -->
+      <!--season_initiator, season_start_time, season_end_time, -->
+      <!--season_time_limit, create_time, operater, -->
+      <!--update_time, season_status, rule_desc, red_packet_desc, season_desc,-->
+      <!--share_qrcode_image, friend_qrcode_image, friend_max_num, -->
+      <!--withdraw_start_time, withdraw_end_time, tag_id, tag_name, reserve1, reserve2)-->
+    <!--values (#{seasonId,jdbcType=INTEGER}, #{seasonName,jdbcType=VARCHAR}, #{gameName,jdbcType=VARCHAR}, -->
+      <!--#{seasonInitiator,jdbcType=VARCHAR}, #{seasonStartTime,jdbcType=TIMESTAMP}, #{seasonEndTime,jdbcType=TIMESTAMP}, -->
+      <!--#{seasonTimeLimit,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{operater,jdbcType=VARCHAR}, -->
+      <!--#{updateTime,jdbcType=TIMESTAMP}, #{seasonStatus,jdbcType=INTEGER}, #{ruleDesc,jdbcType=VARCHAR}, #{redPacketDesc,jdbcType=VARCHAR}, #{seasonDesc,jdbcType=VARCHAR},-->
+      <!--#{shareQrcodeImage,jdbcType=VARCHAR}, #{friendQrcodeImage,jdbcType=VARCHAR}, #{friendMaxNum,jdbcType=INTEGER}, -->
+      <!--#{withdrawStartTime,jdbcType=TIMESTAMP}, #{withdrawEndTime,jdbcType=TIMESTAMP}, #{tagId,jdbcType=INTEGER},-->
+      <!--#{tagName,jdbcType=VARCHAR}, #{reserve1,jdbcType=VARCHAR}, #{reserve2,jdbcType=VARCHAR})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.by.plane.soa.pojo.dubbo.plane.playseason.User" >-->
+    <!--insert into by_plane_play_season-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if test="seasonId != null" >-->
+        <!--season_id,-->
+      <!--</if>-->
+      <!--<if test="seasonName != null" >-->
+        <!--season_name,-->
+      <!--</if>-->
+      <!--<if test="gameName != null" >-->
+        <!--game_name,-->
+      <!--</if>-->
+      <!--<if test="seasonInitiator != null" >-->
+        <!--season_initiator,-->
+      <!--</if>-->
+      <!--<if test="seasonStartTime != null" >-->
+        <!--season_start_time,-->
+      <!--</if>-->
+      <!--<if test="seasonEndTime != null" >-->
+        <!--season_end_time,-->
+      <!--</if>-->
+      <!--<if test="seasonTimeLimit != null" >-->
+        <!--season_time_limit,-->
+      <!--</if>-->
+      <!--<if test="createTime != null" >-->
+        <!--create_time,-->
+      <!--</if>-->
+      <!--<if test="operater != null" >-->
+        <!--operater,-->
+      <!--</if>-->
+      <!--<if test="updateTime != null" >-->
+        <!--update_time,-->
+      <!--</if>-->
+      <!--<if test="seasonStatus != null" >-->
+        <!--season_status,-->
+      <!--</if>-->
+      <!--<if test="ruleDesc != null" >-->
+        <!--rule_desc,-->
+      <!--</if>-->
+      <!--<if test="redPacketDesc != null" >-->
+        <!--red_packet_desc,-->
+      <!--</if>-->
+      <!--<if test="seasonDesc != null" >-->
+        <!--season_desc,-->
+      <!--</if>-->
+      <!--<if test="shareQrcodeImage != null" >-->
+        <!--share_qrcode_image,-->
+      <!--</if>-->
+      <!--<if test="friendQrcodeImage != null" >-->
+        <!--friend_qrcode_image,-->
+      <!--</if>-->
+      <!--<if test="friendMaxNum != null" >-->
+        <!--friend_max_num,-->
+      <!--</if>-->
+
+      <!--<if test="withdrawStartTime != null" >-->
+        <!--withdraw_start_time,-->
+      <!--</if>-->
+      <!--<if test="withdrawEndTime != null" >-->
+        <!--withdraw_end_time,-->
+      <!--</if>-->
+      <!--<if test="tagId != null" >-->
+        <!--tag_id,-->
+      <!--</if>-->
+      <!--<if test="tagName != null" >-->
+        <!--tag_name,-->
+      <!--</if>-->
+
+      <!--<if test="reserve1 != null" >-->
+        <!--reserve1,-->
+      <!--</if>-->
+      <!--<if test="reserve2 != null" >-->
+        <!--reserve2,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if test="seasonId != null" >-->
+        <!--#{seasonId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="seasonName != null" >-->
+        <!--#{seasonName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="gameName != null" >-->
+        <!--#{gameName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="seasonInitiator != null" >-->
+        <!--#{seasonInitiator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="seasonStartTime != null" >-->
+        <!--#{seasonStartTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="seasonEndTime != null" >-->
+        <!--#{seasonEndTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="seasonTimeLimit != null" >-->
+        <!--#{seasonTimeLimit,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="createTime != null" >-->
+        <!--#{createTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="operater != null" >-->
+        <!--#{operater,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="updateTime != null" >-->
+        <!--#{updateTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="seasonStatus != null" >-->
+        <!--#{seasonStatus,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="ruleDesc != null" >-->
+        <!--#{ruleDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="redPacketDesc != null" >-->
+        <!--#{redPacketDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="seasonDesc != null" >-->
+        <!--#{seasonDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="shareQrcodeImage != null" >-->
+        <!--#{shareQrcodeImage,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="friendQrcodeImage != null" >-->
+        <!--#{friendQrcodeImage,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="friendMaxNum != null" >-->
+        <!--#{friendMaxNum,jdbcType=INTEGER},-->
+      <!--</if>-->
+
+      <!--<if test="withdrawStartTime != null" >-->
+        <!--#{withdrawStartTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="withdrawEndTime != null" >-->
+        <!--#{withdrawEndTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="tagId != null" >-->
+        <!--#{tagId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="tagName != null" >-->
+        <!--#{tagName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+
+      <!--<if test="reserve1 != null" >-->
+        <!--#{reserve1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reserve2 != null" >-->
+        <!--#{reserve2,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="java.util.Map" >-->
+    <!--update by_plane_play_season-->
+    <!--<set >-->
+      <!--<if test="planePlaySeason.seasonName != null" >-->
+        <!--season_name = #{planePlaySeason.seasonName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.gameName != null" >-->
+        <!--game_name = #{planePlaySeason.gameName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.seasonInitiator != null" >-->
+        <!--season_initiator = #{planePlaySeason.seasonInitiator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.seasonStartTime != null" >-->
+        <!--season_start_time = #{planePlaySeason.seasonStartTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.seasonEndTime != null" >-->
+        <!--season_end_time = #{planePlaySeason.seasonEndTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.seasonTimeLimit != null" >-->
+        <!--season_time_limit = #{planePlaySeason.seasonTimeLimit,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.createTime != null" >-->
+        <!--create_time = #{planePlaySeason.createTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.operater != null" >-->
+        <!--operater = #{planePlaySeason.operater,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.updateTime != null" >-->
+        <!--update_time = #{planePlaySeason.updateTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.seasonStatus != null" >-->
+        <!--season_status = #{planePlaySeason.seasonStatus,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.ruleDesc != null" >-->
+        <!--rule_desc = #{planePlaySeason.ruleDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.redPacketDesc != null" >-->
+        <!--red_packet_desc = #{planePlaySeason.redPacketDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.seasonDesc != null" >-->
+        <!--season_desc = #{planePlaySeason.seasonDesc,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.shareQrcodeImage != null" >-->
+        <!--share_qrcode_image = #{planePlaySeason.shareQrcodeImage,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.friendQrcodeImage != null" >-->
+        <!--friend_qrcode_image = #{planePlaySeason.friendQrcodeImage,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.friendMaxNum != null" >-->
+        <!--friend_max_num = #{planePlaySeason.friendMaxNum,jdbcType=INTEGER},-->
+      <!--</if>-->
+
+      <!--<if test="planePlaySeason.withdrawStartTime != null" >-->
+        <!--withdraw_start_time = #{planePlaySeason.withdrawStartTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.withdrawEndTime != null" >-->
+        <!--withdraw_end_time = #{planePlaySeason.withdrawEndTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.tagId != null" >-->
+        <!--tag_id = #{planePlaySeason.tagId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.tagName != null" >-->
+        <!--tag_name = #{planePlaySeason.tagName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+
+      <!--<if test="planePlaySeason.reserve1 != null" >-->
+        <!--reserve1 = #{planePlaySeason.reserve1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="planePlaySeason.reserve2 != null" >-->
+        <!--reserve2 = #{planePlaySeason.reserve2,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--<include refid="where_Condition"/>-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.by.plane.soa.pojo.dubbo.plane.playseason.User" >-->
+    <!--update by_plane_play_season-->
+    <!--set season_name = #{seasonName,jdbcType=VARCHAR},-->
+      <!--game_name = #{gameName,jdbcType=VARCHAR},-->
+      <!--season_initiator = #{seasonInitiator,jdbcType=VARCHAR},-->
+      <!--season_start_time = #{seasonStartTime,jdbcType=TIMESTAMP},-->
+      <!--season_end_time = #{seasonEndTime,jdbcType=TIMESTAMP},-->
+      <!--season_time_limit = #{seasonTimeLimit,jdbcType=INTEGER},-->
+      <!--create_time = #{createTime,jdbcType=TIMESTAMP},-->
+      <!--operater = #{operater,jdbcType=VARCHAR},-->
+      <!--update_time = #{updateTime,jdbcType=TIMESTAMP},-->
+      <!--season_status = #{seasonStatus,jdbcType=INTEGER},-->
+      <!--rule_desc = #{ruleDesc,jdbcType=VARCHAR},-->
+      <!--red_packet_desc = #{redPacketDesc,jdbcType=VARCHAR},-->
+      <!--season_desc = #{seasonDesc,jdbcType=VARCHAR},-->
+      <!--share_qrcode_image = #{shareQrcodeImage,jdbcType=VARCHAR},-->
+      <!--friend_qrcode_image = #{friendQrcodeImage,jdbcType=VARCHAR},-->
+      <!--friend_max_num = #{friendMaxNum,jdbcType=INTEGER},-->
+      <!--withdraw_start_time = #{withdrawStartTime,jdbcType=TIMESTAMP},-->
+      <!--withdraw_end_time = #{withdrawEndTime,jdbcType=TIMESTAMP},-->
+      <!--tag_id = #{tagId,jdbcType=INTEGER},-->
+      <!--tag_name = #{tagName,jdbcType=VARCHAR},-->
+      <!--reserve1 = #{reserve1,jdbcType=VARCHAR},-->
+      <!--reserve2 = #{reserve2,jdbcType=VARCHAR}-->
+    <!--where season_id = #{seasonId,jdbcType=INTEGER}-->
+  <!--</update>-->
+  <!--<select id="findUserByCondition" resultMap="BaseResultMap" parameterType="com.by.plane.soa.pojo.dubbo.plane.playseason.UserCondition" >-->
+    <!--select-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from by_plane_play_season-->
+    <!--<include refid="where_User"/>-->
+    <!--<if test="sortField != null and sortDesc != null">-->
+      <!--ORDER BY ${sortField} ${sortDesc}-->
+    <!--</if>-->
+    <!--<if test="pageIndex != null and pageSize != null">-->
+      <!--limit #{pageIndex, jdbcType=INTEGER} , #{pageSize, jdbcType=INTEGER}-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<select id="findUserByConditionWithPage" resultMap="BaseResultMap" parameterType="com.by.plane.soa.pojo.dubbo.plane.playseason.UserCondition" >-->
+    <!--select-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from by_plane_play_season-->
+    <!--<include refid="where_User"/>-->
+    <!--<if test="sortField != null and sortDesc != null">-->
+      <!--ORDER BY ${sortField} ${sortDesc}-->
+    <!--</if>-->
+    <!--<if test="pageIndex != null and pageSize != null">-->
+      <!--limit #{pageIndex, jdbcType=INTEGER} , #{pageSize, jdbcType=INTEGER}-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<select id="findCountUser" resultType="java.lang.Integer" parameterType="com.by.plane.soa.pojo.dubbo.plane.playseason.UserCondition">-->
+    <!--select count(season_id)-->
+    <!--from by_plane_play_season-->
+    <!--<include refid="where_User"/>-->
+  <!--</select>-->
+  <!--<select id="checkDateRange" resultType="java.lang.Integer" parameterType="com.by.plane.soa.pojo.dubbo.plane.playseason.UserCondition">-->
+    <!--select count(*)-->
+    <!--from by_plane_play_season-->
+      <!--<where>-->
+        <!--season_status <![CDATA[ <> ]]> 0-->
+              <!--<if test="seasonId != null" >-->
+                <!--and season_id <![CDATA[ <> ]]> #{seasonId, jdbcType=INTEGER}-->
+              <!--</if>-->
+              <!--<if test="seasonStartTime != null" >-->
+                  <!--and season_start_time > #{seasonStartTime, jdbcType=DATE}-->
+              <!--</if>-->
+              <!--<if test="seasonEndTime != null" >-->
+                  <!--and withdraw_end_time &lt; #{seasonEndTime, jdbcType=DATE}-->
+              <!--</if>-->
+      <!--</where>-->
+  <!--</select>-->
+  <!--<select id="checkDate" resultType="java.lang.Integer" parameterType="com.by.plane.soa.pojo.dubbo.plane.playseason.UserCondition">-->
+    <!--select count(*)-->
+    <!--from by_plane_play_season-->
+      <!--<where>-->
+        <!--season_status <![CDATA[ <> ]]> 0-->
+         <!--<if test="seasonId != null" >-->
+             <!--and season_id <![CDATA[ <> ]]> #{seasonId, jdbcType=INTEGER}-->
+         <!--</if>-->
+         <!--<if test="seasonStartTime != null" >-->
+             <!--and season_start_time <![CDATA[ <= ]]> #{seasonStartTime, jdbcType=DATE} and withdraw_end_time >= #{seasonStartTime, jdbcType=DATE}-->
+         <!--</if>-->
+         <!--<if test="seasonEndTime != null" >-->
+             <!--and season_start_time <![CDATA[ <= ]]> #{seasonEndTime, jdbcType=DATE} and withdraw_end_time >= #{seasonEndTime, jdbcType=DATE}-->
+         <!--</if>-->
+      <!--</where>-->
+  <!--</select>-->
+  <!--<select id="findChangeSeason" resultMap="BaseResultMap" parameterType="java.lang.String">-->
+    <!--SELECT <include refid="Base_Column_List" /> FROM by_plane_play_season WHERE season_status = 1 AND season_start_time = DATE_ADD(#{dateNow, jdbcType=DATE},INTERVAL 1 DAY)-->
+    <!--UNION-->
+    <!--SELECT <include refid="Base_Column_List" /> FROM by_plane_play_season WHERE season_status = 2 AND season_end_time = #{dateNow, jdbcType=DATE}-->
+    <!--UNION-->
+    <!--SELECT <include refid="Base_Column_List" /> FROM by_plane_play_season WHERE season_status = 3 AND withdraw_end_time = #{dateNow, jdbcType=DATE}-->
+  <!--</select>-->
+</mapper>
