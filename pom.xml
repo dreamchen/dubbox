@@ -104,7 +104,7 @@
 		<sca_version>2.0-M5.1</sca_version>
 		<guice_version>3.0</guice_version>
 		<cglib_version>2.2</cglib_version>
-		<webx_version>3.2.4</webx_version>
+		<webx_version>3.3.0</webx_version>
 		<jackson_version>2.7.1</jackson_version>
 
         <commons_pool_version>1.6</commons_pool_version>

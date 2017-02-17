@@ -33,7 +33,7 @@
         <eclipse.useProjectReferences>false</eclipse.useProjectReferences>
         <skip_maven_deploy>false</skip_maven_deploy>
         <maven-jetty-plugin_version>8.1.15.v20140411</maven-jetty-plugin_version>
-        <spring.bom.version>4.2.4RELEASE</spring.bom.version>
+        <spring.bom.version>4.2.4.RELEASE</spring.bom.version>
     </properties>
     <dependencies>
         <dependency>
