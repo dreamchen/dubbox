@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="byName">
 
-    <bean id="userDao" class="com.alibaba.dubbo.dal.dao.impl.UserDaoImpl"/>
+    <bean id="userExtendDao" class="com.alibaba.dubbo.dal.dao.impl.UserExtendDaoImpl"/>
+
+    <bean id="roleDao" class="com.alibaba.dubbo.dal.dao.impl.RoleDaoImpl"/>
 
 </beans>

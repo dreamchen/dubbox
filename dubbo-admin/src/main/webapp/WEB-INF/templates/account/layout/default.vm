@@ -12,38 +12,33 @@
 		<script type="text/javascript" src="$rootContextPath.getURI("js/jquery-1.4.2.min.js")"></script>
 		<script type="text/javascript" src="$rootContextPath.getURI("js/jquery.simplemodal-1.4.js")"></script>
 		<script type="text/javascript" src="$rootContextPath.getURI("js/dubbo.js")"></script>
+		<script type="text/javascript" src="$rootContextPath.getURI("js/moment.min.js")"></script>
 	</head>
-	<body onload="init();initSearch();">
+	<body onload="init();">
 	$control.setTemplate("home:menu.vm")
 	<script language="javascript">setActiveTab(4);</script>
 	<div class="dubbo_search" style="height: 50px;">
 		<div class="title title_search"><h2>
-			#if($_method != "index")$i18n.get($_method)#end $i18n.get($_type)
+			#if($_method != "index")
+                #if($_method == "edit")
+					#if($_type == "roles")
+						$i18n.get("modify.roles")
+					#elseif($_type == "infos")
+						$i18n.get("modify.accountinfo")
+					#else
+						$i18n.get("modify.accountinfo")
+					#end
+                #elseif($_method == "passwds")
+                    $i18n.get("modify.account.password")
+                #else
+                    $i18n.get($_method)
+                #end
+            #else
+                $i18n.get($_type)
+            #end
 		</h2></div>
 		<div class="crumbs">
-			<a href="/">$i18n.get("home")</a> &gt; $i18n.get("governance")
-			#if($application && $application != '*')
-				&gt;
-				$i18n.get("applications")
-				&gt; $application
-			#end
-			#if($service && $service != '*')
-				&gt;
-				#if($application && $application != '*')
-					<a href="/governance/applications/$application/services">$i18n.get("services")</a>
-				#else
-					$i18n.get("services")
-				#end
-				&gt; $service
-			#elseif($address && $address != '*')
-				&gt;
-				#if($application && $application != '*')
-					<a href="/governance/applications/$application/addresses">$i18n.get("addresses")</a>
-				#else
-					$i18n.get("addresses")
-				#end
-				&gt; $address
-			#end
+			<a href="/">$i18n.get("home")</a> &gt; $i18n.get("permissions")
 			#if($_method == "index")
 				&gt; $i18n.get($_type)
 			#else
@@ -53,26 +48,39 @@
 				#elseif($id)
 					<a href="../../$_type">$i18n.get($_type)</a>
 				#else
-					<a href="../$_type">$i18n.get($_type)</a>
+                    <a href="../$_type">$i18n.get($_type)</a>
 				#end
 				&gt;
 				#if($id)$id &gt;#end
-				$i18n.get($_method)
+
+                #if($_method == "edit")
+					#if($_type == "roles")
+						$i18n.get("modify.roles")
+					#elseif($_type == "infos")
+						$i18n.get("modify.accountinfo")
+					#else
+						$i18n.get("modify.accountinfo")
+					#end
+                #elseif($_method == "passwds")
+                    $i18n.get("modify.account.password")
+                #else
+                    $i18n.get($_method)
+                #end
 			#end
 		</div>
 	</div>
 	<div class="dubbo_content">
 		<div class="tab" id="Tab2">
-			#set($tabs = ["username", "consumers", "applications", "routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
-			#if($tabs.size() > 0)
-			<div class="menubox">
-				<ul>
-					#foreach ($tab in $tabs)
-						<li id="$tab" style="color: white;">$i18n.get($tab)</li>
-					#end
-				</ul>
-			</div>
-			#end
+##			#set($tabs = ["username", "consumers", "applications", "routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
+##			#if($tabs.size() > 0)
+##			<div class="menubox">
+##				<ul>
+##					#foreach ($tab in $tabs)
+##						<li id="$tab" style="color: white;">$i18n.get($tab)</li>
+##					#end
+##				</ul>
+##			</div>
+##			#end
 			<div class="contentbox_tab">
 				<div id="con_two_1">
 					$screen_placeholder
@@ -109,7 +117,7 @@
 	    	return;
         }
 	    if(keyword == ''
-	    		|| keyword == '$i18n.get("please.input.service")' 
+	    		|| keyword == '$i18n.get("please.input.service")'
 	    		|| keyword == '$i18n.get("please.input.application")'
 	    		|| keyword == '$i18n.get("please.input.address")') {
 	    	keyword = '*';

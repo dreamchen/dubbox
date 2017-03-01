@@ -6,7 +6,7 @@
 </script>
 #else
 <div class="ico_btn">
-	#if($currentUser.role != "G")
+	#if($currentUser.managePrivilege.indexOf("G") < 0)
 		#if($service)
 			<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.force.mock")', 'applications/0/shield?application=' + getChecked('ids'));} return false;"><img src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.force.mock")</span></a>
 			<span class="ico_line">|</span>

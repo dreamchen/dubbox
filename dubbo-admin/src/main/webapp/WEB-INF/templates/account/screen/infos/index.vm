@@ -1,0 +1,52 @@
+#if(!$currentUser)
+<font color="red">$i18n.get("not.found")</font> (<a href="services?keyword=*">$i18n.get("show.all")</a>)
+#else
+<div class="ico_btn">
+    <a href="/account/infos/edit"><img
+            src="$rootContextPath.getURI("images/ico_user.png")" width="12" height="12"/><span
+            class="ico_font">$i18n.get("modify.accountinfo")</span></a>
+    <span class="ico_line">|</span>
+    <a href="/account/infos/passwds"><img
+            src="$rootContextPath.getURI("images/ico_password.png")" width="12" height="12"/><span
+            class="ico_font">$i18n.get("modify.account.password")</span></a>
+</div>
+<br/>
+<table cellpadding="0" cellspacing="0" class="list list_dubbo" id="table_o">
+    <tr>
+        <th>用户名</th>
+        <th>姓名</th>
+        <th>部门</th>
+        <th>角色</th>
+        <th>邮箱</th>
+        <th>电话</th>
+        <th>语言</th>
+        <th>应用权限</th>
+        <th>服务权限</th>
+        <th>管理权限</th>
+        <th>创建时间</th>
+        <th>状态</th>
+    </tr>
+    <tr>
+        <td>$currentUser.username</td>
+        <td>$!currentUser.name</td>
+        <td>$!currentUser.department</td>
+        <td>$!currentUser.roleName</td>
+        <td>$!currentUser.email</td>
+        <td>$!currentUser.phone</td>
+        <td>$!currentUser.locale</td>
+        <td>$!currentUser.appPrivilege</td>
+        <td>$!currentUser.servicePrivilege</td>
+        <td>$!currentUser.managePrivilege</td>
+        <td>$!tool.formatDate($!currentUser.created)</td>
+        <td>
+            #if ($currentUser.status =="1")
+                <font color="green">启用</font>
+            #elseif($currentUser.status == "2")
+                <font color="blue">其他</font>
+            #else
+                <font color="#a9a9a9">禁用</font>
+            #end
+        </td>
+    </tr>
+</table>
+#end

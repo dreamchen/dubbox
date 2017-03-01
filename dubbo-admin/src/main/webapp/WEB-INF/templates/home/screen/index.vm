@@ -118,7 +118,7 @@ $control.setTemplate("home:menu.vm")
     </div>
    </div>
    <table id="serviceCompletion" style="margin-top: 20px;">
-		 #if($currentUser.role != "G")
+		 #if($currentUser.managePrivilege.indexOf("G") < 0)
 		<tr>
 			<th>$i18n.get("add"): </th>
 			<td style="padding-left: 10px;">

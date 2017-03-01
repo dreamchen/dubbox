@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.dubbo.dal.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.alibaba.dubbo.registry.common.domain.Role">
+        <id column="rid" property="id" jdbcType="INTEGER"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="service_privilege" property="servicePrivilege" jdbcType="VARCHAR"/>
+        <result column="app_privilege" property="appPrivilege" jdbcType="VARCHAR"/>
+        <result column="manage_privilege" property="managePrivilege" jdbcType="VARCHAR"/>
+        <result column="creator_id" property="creatorId" jdbcType="VARCHAR"/>
+        <result column="creator_name" property="creatorName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="created" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="modified" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    rid, role_name, service_privilege, app_privilege, manage_privilege, creator_id, creator_name, create_time, update_time, status
+  </sql>
+    <sql id="where_Condition">
+        <where>
+            1 = 1
+            <if test="condition != null">
+                <if test="condition.id != null">
+                    and uid = #{condition.id,jdbcType=INTEGER}
+                </if>
+                <if test="condition.roleName != null">
+                    and role_name = #{condition.roleName,jdbcType=VARCHAR}
+                </if>
+                <if test="condition.servicePrivilege != null">
+                    and service_privilege = #{condition.servicePrivilege,jdbcType=VARCHAR}
+                </if>
+                <if test="condition.appPrivilege != null">
+                    and app_privilege = #{condition.appPrivilege,jdbcType=VARCHAR}
+                </if>
+                <if test="condition.managePrivilege != null">
+                    and manage_privilege = #{condition.managePrivilege,jdbcType=VARCHAR}
+                </if>
+                <if test="condition.creatorId != null">
+                    and creator_id = #{condition.creatorId,jdbcType=VARCHAR}
+                </if>
+                <if test="condition.creatorName != null">
+                    and creator_name = #{condition.creatorName,jdbcType=VARCHAR}
+                </if>
+                <if test="condition.created != null">
+                    and create_time = #{condition.created,jdbcType=TIMESTAMP}
+                </if>
+                <if test="condition.modified != null">
+                    and update_time = #{condition.modified,jdbcType=TIMESTAMP}
+                </if>
+                <if test="condition.status != null">
+                    and status = #{condition.status,jdbcType=VARCHAR}
+                </if>
+            </if>
+        </where>
+    </sql>
+    <sql id="where_Role">
+        <where>
+            1 = 1
+            <if test="id != null">
+                and uid = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="roleName != null">
+                and role_name = #{roleName,jdbcType=VARCHAR}
+            </if>
+            <if test="servicePrivilege != null">
+                and service_privilege = #{servicePrivilege,jdbcType=VARCHAR}
+            </if>
+            <if test="appPrivilege != null">
+                and app_privilege = #{appPrivilege,jdbcType=VARCHAR}
+            </if>
+            <if test="managePrivilege != null">
+                and manage_privilege = #{managePrivilege,jdbcType=VARCHAR}
+            </if>
+            <if test="creatorId != null">
+                and creator_id = #{creatorId,jdbcType=VARCHAR}
+            </if>
+            <if test="creatorName != null">
+                and creator_name = #{creatorName,jdbcType=VARCHAR}
+            </if>
+            <if test="created != null">
+                and create_time = #{created,jdbcType=TIMESTAMP}
+            </if>
+            <if test="modified != null">
+                and update_time = #{modified,jdbcType=TIMESTAMP}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </sql>
+
+    <select id="findRoleById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from dubbo_privilege
+        where rid = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteRoleById" parameterType="java.lang.Long">
+        delete from dubbo_privilege
+        where rid = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteRoleByIds">
+        delete from dubbo_privilege
+        where rid IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <insert id="insertRole" parameterType="com.alibaba.dubbo.registry.common.domain.Role">
+        insert into dubbo_privilege (role_name, service_privilege, app_privilege, manage_privilege,
+        creator_id, creator_name, create_time, update_time, status)
+        values (#{roleName,jdbcType=VARCHAR}, #{servicePrivilege,jdbcType=VARCHAR}, #{appPrivilege,jdbcType=VARCHAR},
+        #{managePrivilege,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{creatorName,jdbcType=VARCHAR},
+        #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateRoleByCondition" parameterType="java.util.Map">
+        update dubbo_privilege
+        <set>
+            <if test="userExtend.roleName != null">
+                role_name = #{userExtend.roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="userExtend.servicePrivilege != null">
+                service_privilege = #{userExtend.servicePrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="userExtend.appPrivilege != null">
+                app_privilege = #{userExtend.appPrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="userExtend.managePrivilege != null">
+                manage_privilege = #{userExtend.managePrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="userExtend.creatorId != null">
+                creator_id = #{userExtend.creatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="userExtend.creatorName != null">
+                creator_name = #{userExtend.creatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="userExtend.created != null">
+                create_time = #{userExtend.created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userExtend.modified != null">
+                update_time = #{userExtend.modified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userExtend.status != null">
+                status = #{userExtend.status,jdbcType=VARCHAR}
+            </if>
+        </set>
+        <include refid="where_Condition"/>
+    </update>
+
+    <update id="updateRoleById" parameterType="com.alibaba.dubbo.registry.common.domain.Role">
+        update dubbo_privilege
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="servicePrivilege != null">
+                service_privilege = #{servicePrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="appPrivilege != null">
+                app_privilege = #{appPrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="managePrivilege != null">
+                manage_privilege = #{managePrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorId != null">
+                creator_id = #{creatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorName != null">
+                creator_name = #{creatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="created != null">
+                create_time = #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modified != null">
+                update_time = #{modified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where rid = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateRoleByIds" parameterType="com.alibaba.dubbo.registry.common.domain.Role">
+        update dubbo_privilege
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="servicePrivilege != null">
+                service_privilege = #{servicePrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="appPrivilege != null">
+                app_privilege = #{appPrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="managePrivilege != null">
+                manage_privilege = #{managePrivilege,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorId != null">
+                creator_id = #{creatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="creatorName != null">
+                creator_name = #{creatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="created != null">
+                create_time = #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modified != null">
+                update_time = #{modified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where rid IN
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateRoleAllById" parameterType="com.alibaba.dubbo.registry.common.domain.Role">
+        update dubbo_privilege
+        set
+            role_name = #{userExtend.roleName,jdbcType=VARCHAR},
+            service_privilege = #{userExtend.servicePrivilege,jdbcType=VARCHAR},
+            app_privilege = #{userExtend.appPrivilege,jdbcType=VARCHAR},
+            manage_privilege = #{userExtend.managePrivilege,jdbcType=VARCHAR},
+            creator_id = #{userExtend.creatorId,jdbcType=VARCHAR},
+            creator_name = #{userExtend.creatorName,jdbcType=VARCHAR},
+            create_time = #{userExtend.created,jdbcType=TIMESTAMP},
+            update_time = #{userExtend.modified,jdbcType=TIMESTAMP},
+            status = #{userExtend.status,jdbcType=VARCHAR}
+        where uid = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="findRoleByCondition" resultMap="BaseResultMap"
+            parameterType="com.alibaba.dubbo.registry.common.domain.Role">
+        select
+        <include refid="Base_Column_List"/>
+        from dubbo_privilege
+        <include refid="where_Role"/>
+        <if test="sortField != null and sortDesc != null">
+            ORDER BY ${sortField} ${sortDesc}
+        </if>
+    </select>
+
+    <select id="findRoleByConditionWithPage" resultMap="BaseResultMap"
+            parameterType="com.alibaba.dubbo.registry.common.domain.Role">
+        select
+        <include refid="Base_Column_List"/>
+        from dubbo_privilege
+        <include refid="where_Role"/>
+        <if test="sortField != null and sortDesc != null">
+            ORDER BY ${sortField} ${sortDesc}
+        </if>
+        <if test="pageIndex != null and pageSize != null">
+            limit #{pageIndex, jdbcType=INTEGER} , #{pageSize, jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <select id="findRoleByIds" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from dubbo_privilege
+        where rid IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findCountRole" resultType="java.lang.Integer"
+            parameterType="com.alibaba.dubbo.registry.common.domain.Role">
+        select count(*)
+        from dubbo_privilege
+        <include refid="where_Role"/>
+    </select>
+</mapper>

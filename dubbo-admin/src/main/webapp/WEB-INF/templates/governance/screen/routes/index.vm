@@ -1,5 +1,5 @@
 <div class="ico_btn">
-	#if($currentUser.role != "G")
+	#if($currentUser.managePrivilege.indexOf("G") < 0)
 	<a href="routes/add"><img src="$rootContextPath.getURI("images/ico_add.png")" width="12" height="12" /><span class="ico_font">$i18n.get("add")</span></a>
 	<span class="ico_line">|</span>
 	<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.delete")', 'routes/' + getChecked('ids') + '/delete'); } return false;"><img src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.delete")</span></a>
@@ -41,7 +41,7 @@
 	</td>
 	<td>
 		<a href="routes/$route.id/routeselect"><img src="$rootContextPath.getURI("images/ico_show.png")" width="12" height="12" /><span class="ico_font">$i18n.get("proview")</span></a>
-		#if($currentUser.role != "G")
+		#if($currentUser.managePrivilege.indexOf("G") < 0)
 		<span class="ico_line">|</span>
 		<a href="routes/$route.id/edit"><img src="$rootContextPath.getURI("images/ico_edit.png")" width="12" height="12" /><span class="ico_font">$i18n.get("edit")</span></a>
 		<span class="ico_line">|</span>

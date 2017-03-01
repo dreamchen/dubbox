@@ -27,10 +27,12 @@
 	<bean id="routeService" class="com.alibaba.dubbo.governance.service.impl.RouteServiceImpl" />
 	
 	<bean id="userService" class="com.alibaba.dubbo.governance.service.impl.UserServiceImpl">
-		<property name="rootPassword" value="${dubbo.admin.root.password}" />
-		<property name="guestPassword" value="${dubbo.admin.guest.password}" />
+		<!--<property name="rootPassword" value="${dubbo.admin.root.password}" />-->
+		<!--<property name="guestPassword" value="${dubbo.admin.guest.password}" />-->
 	</bean>
 
 	<bean id="governanceCache" class="com.alibaba.dubbo.governance.sync.RegistryServerSync" />
+
+	<bean id="roleService" class="com.alibaba.dubbo.governance.service.impl.RoleServiceImpl"/>
 
 </beans>

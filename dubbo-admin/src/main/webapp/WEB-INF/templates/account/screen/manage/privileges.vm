@@ -1,0 +1,176 @@
+<br/>
+<form id="editPrivileges" action="editPrivileges" method="post">
+    <table style="width: 800px !important; margin: auto;" cellpadding="0" cellspacing="0"
+           class="list list_dubbo"
+           id="table_o">
+        <tr>
+            <th colspan="2">设置权限</th>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">权限规则</td>
+            <td>
+                <input type="text" id="regexPrivilege" style="height: 20px; margin: 10px;" value=""/>
+                <input type="hidden" name="uids" value="$!uids"/>
+                <input type="hidden" name="rids" value="$!rids"/>
+                <input type="hidden" name="appPrivileges" id="appPrivileges" value=""/>
+                <input type="hidden" name="servicePrivileges" id="servicePrivileges" value=""/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 10px 0px !important;">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr style="border-collapse: inherit">
+                        <td style="text-align: center !important; background-color: darkseagreen; width: 40%;border-top: none;">
+                            <input type="button" onclick="addPrivileges('app')"
+                                   style="padding: 5px 10px; margin: 5px 0px;" value="添加"/>
+                            <input type="button" onclick="delPrivileges('app')"
+                                   style="padding: 5px 10px; margin: 5px 0px;" value="删除"/>
+                            <input type="button" onclick="emptyPrivileges('app')"
+                                   style="padding: 5px 10px; margin: 5px 0px;" value="清空"/>
+                        </td>
+                        <td style="text-align: center !important; background-color: cornflowerblue; width: 40%;border-top: none;">
+                            <input type="button" onclick="addPrivileges('service')"
+                                   style="padding: 5px 10px; margin: 5px 0px;" value="添加"/>
+                            <input type="button" onclick="delPrivileges('service')"
+                                   style="padding: 5px 10px; margin: 5px 0px;" value="删除"/>
+                            <input type="button" onclick="emptyPrivileges('service')"
+                                   style="padding: 5px 10px; margin: 5px 0px;" value="清空"/>
+                        </td>
+                        <td style="text-align: center !important; background-color: #b3b3b3; width: 20%;border-top: none;">
+                            <span><font size="3" style="font-weight: bold;">manage权限列表</font></span></td>
+                    </tr>
+                    <tr style="border-collapse: inherit">
+                        <td style="text-align: center !important; background-color: darkseagreen; width: 40%;">
+                            <span><font size="3" style="font-weight: bold;">app权限列表</font></span></td>
+                        <td style="text-align: center !important; background-color: cornflowerblue; width: 40%;">
+                            <span><font size="3" style="font-weight: bold;">service权限列表</font></span></td>
+                        <td style="text-align: center !important; background-color: #b3b3b3; width: 20%;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center !important; background-color: darkseagreen; width: 40%; padding: 5px; border-top: none;">
+                            <select multiple id="app_privileges" style="width: 100%; height: 500px;">
+                                #if($uids)
+                                    #if($uids.split(",").size()==1 && $targetUser.appPrivilege)
+                                        #foreach($app in $targetUser.appPrivilege.split(","))
+                                            <option value="$app">$app</option>
+                                        #end
+                                    #end
+                                #elseif($rids)
+                                    #if($rids.split(",").size()==1 && $targetRole.appPrivilege)
+                                        #foreach($app in $targetRole.appPrivilege.split(","))
+                                            <option value="$app">$app</option>
+                                        #end
+                                    #end
+                                #end
+                            </select>
+                        </td>
+                        <td style="text-align: center !important; background-color: cornflowerblue; width: 40%; padding: 5px; border-top: none;">
+                            <select multiple id="service_privileges" style="width: 100%; height: 500px;">
+                                #if($uids)
+                                    #if($uids.split(",").size()==1 && $targetUser.servicePrivilege)
+                                        #foreach($service in $targetUser.servicePrivilege.split(","))
+                                            <option value="$service">$service</option>
+                                        #end
+                                    #end
+                                #elseif($rids)
+                                    #if($rids.split(",").size()==1 && $targetRole.appPrivilege)
+                                        #foreach($service in $targetRole.servicePrivilege.split(","))
+                                            <option value="$service">$service</option>
+                                        #end
+                                    #end
+                                #end
+                            </select>
+                        </td>
+                        <td style="text-align: left !important; vertical-align: top; background-color: #b3b3b3; width: 20%; padding: 5px; border-top: none;">
+                            <div id="manage_privileges" style="background-color: #ffffff; width: 100%; height: 500px;">
+                                <div style="margin-left: 5px;">
+                                    #set($localManagePrivilege = "")
+                                    #if($uids)
+                                        #if($uids.split(",").size()==1 && $targetUser.appPrivilege)
+                                            #set($localManagePrivilege = $targetUser.managePrivilege)
+                                        #end
+                                    #elseif($rids)
+                                        #if($rids.split(",").size()==1 && $targetRole.appPrivilege)
+                                            #set($localManagePrivilege = $targetUser.managePrivilege)
+                                        #end
+                                    #end
+                                    #if($localManagePrivilege)
+                                        <input type="radio" name="managePrivileges" #if($localManagePrivilege ==
+                                            "R") checked #end value="R"/>ROOT<br/>
+                                        <input type="radio" name="managePrivileges" #if($localManagePrivilege ==
+                                            "A") checked #end value="A"/>Administrator<br/>
+                                        <input type="radio" name="managePrivileges" #if($localManagePrivilege ==
+                                            "M") checked #end value="M"/>Manager<br/>
+                                        <input type="radio" name="managePrivileges" #if($localManagePrivilege ==
+                                            "G") checked #end value="G"/>Guest
+                                    #else
+                                        <input type="radio" name="managePrivileges" value="R"/>ROOT<br/>
+                                        <input type="radio" name="managePrivileges" value="A"/>Administrator<br/>
+                                        <input type="radio" name="managePrivileges" value="M"/>Manager<br/>
+                                        <input type="radio" name="managePrivileges" checked value="G"/>Guest
+                                    #end
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center !important;" colspan="2">
+                <input type="button" onclick="editPrivileges()" style="margin: 10px; padding: 5px 10px;" value="保存"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function editPrivileges() {
+        var appPrivileges = "", servicePrivileges = "";
+        $("#app_privileges option").each(function () {
+            appPrivileges += "," + $(this).val();
+        });
+        $("#service_privileges option").each(function () {
+            servicePrivileges += "," + $(this).val();
+        });
+        $("#appPrivileges").val(appPrivileges.substr(1));
+        $("#servicePrivileges").val(servicePrivileges.substr(1));
+        $("#editPrivileges").submit();
+    }
+
+    function addPrivileges(type) {
+        var regexPrivilege = $("#regexPrivilege").val();
+        if (!regexPrivilege) {
+            alert("请输入权限规则");
+            return;
+        }
+        if (type == "app") {
+            $("#app_privileges").prepend('<option value="' + regexPrivilege + '">' + regexPrivilege + '</option>');
+        } else {
+            $("#service_privileges").prepend('<option value="' + regexPrivilege + '">' + regexPrivilege + '</option>');
+        }
+    }
+    function delPrivileges(type) {
+        if (type == "app") {
+            var opts = $("#app_privileges option:selected");
+            if (opts.length) {
+                opts.remove();
+            } else {
+                alert("请选择要删除的app权限")
+            }
+        } else {
+            var opts = $("#service_privileges option:selected");
+            if (opts.length) {
+                opts.remove();
+            } else {
+                alert("请选择要删除的service权限")
+            }
+        }
+    }
+    function emptyPrivileges(type) {
+        if (type == "app") {
+            $("#app_privileges").empty();
+        } else {
+            $("#service_privileges").empty();
+        }
+    }
+</script>

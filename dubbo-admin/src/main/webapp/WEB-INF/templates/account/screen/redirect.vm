@@ -8,7 +8,7 @@
 		<script type="text/javascript">
 			Box.show("alertBox");
 			#if($success)
-				sleep(this,500);
+				sleep(this,1000);
 				this.NextStep=function(){
 					window.location.href = '$redirect';
 				}

@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.alibaba.dubbo.registry.common.domain.UserExtend;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.citrus.service.pipeline.PipelineContext;
@@ -39,7 +40,7 @@ public class ServicePrivilegeCheckValve extends AbstractValve {
     }
 
     public void invoke(PipelineContext pipelineContext) throws Exception {
-        User user = (User) request.getSession().getAttribute(WebConstants.CURRENT_USER_KEY);
+        User user = (UserExtend) request.getSession().getAttribute(WebConstants.CURRENT_USER_KEY);
         invokeCheckServicePrivilege(user);
         pipelineContext.invokeNext();
     }

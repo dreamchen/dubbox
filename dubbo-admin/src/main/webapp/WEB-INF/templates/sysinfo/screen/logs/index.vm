@@ -1,5 +1,5 @@
 <div class="ico_btn">
-	#if($currentUser.role == "R")
+	#if($currentUser.managePrivilege.indexOf("R") >= 0)
 		<select id="logLevel" name="logLevel" onchange="changeLevel(this.value);">
 			<option value="ALL" #if($level == "ALL")selected="selected"#end>ALL</option>
 			<option value="TRACE" #if($level == "TRACE")selected="selected"#end>TRACE</option>

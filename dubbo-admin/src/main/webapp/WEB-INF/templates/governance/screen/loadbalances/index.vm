@@ -1,5 +1,5 @@
 <div class="ico_btn">
-	#if($currentUser.role != "G")
+	#if($currentUser.managePrivilege.indexOf("G") < 0)
 	<a href="loadbalances/add"><img src="$rootContextPath.getURI("images/ico_add.png")" width="9" height="9" /><span class="ico_font">$i18n.get("add")</span></a>
 	<span class="ico_line">|</span>
 	<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.delete")', 'loadbalances/' + getChecked('ids') + '/delete'); } return false;"><img src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.delete")</span></a>
@@ -16,7 +16,7 @@
 	#else
 	<th width="190">$i18n.get("loadBalanceStrategy"): <select onchange="searchTable('table_o', 2, this.value);" onclick="searchTable('table_o', 2, this.value);"><option value="">$i18n.get("all")</option><option value="$i18n.get("random")">$i18n.get("random")</option><option value="$i18n.get("roundrobin")">$i18n.get("roundrobin")</option><option value="$i18n.get("leastactive")">$i18n.get("leastactive")</option></select></th>
 	#end
-	#if($currentUser.role != "G")<th width="130">$i18n.get("operation")</th>#end
+	#if($currentUser.managePrivilege.indexOf("G") < 0)<th width="130">$i18n.get("operation")</th>#end
 </tr>
 #foreach($loadbalance in $loadbalances)
 <tr>
@@ -26,7 +26,7 @@
 	<td><a href="services/$loadbalance.service/loadbalances">$loadbalance.service</a></td>
 	#end
 	<td>$i18n.get($loadbalance.strategy)</td>
-	#if($currentUser.role != "G")
+	#if($currentUser.managePrivilege.indexOf("G") < 0)
 	<td>
 		<a href="loadbalances/$loadbalance.id/edit"><img src="$rootContextPath.getURI("images/ico_edit.png")" width="12" height="12" /><span class="ico_font">$i18n.get("edit")</span></a>
 		<span class="ico_line">|</span>

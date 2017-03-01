@@ -1,0 +1,58 @@
+<br/>
+<form id="modifyUser" action="modify" method="post">
+    <table style="width: 600px !important; margin: auto;" cellpadding="0" cellspacing="0"
+           class="list list_dubbo"
+           id="table_o">
+        <tr>
+            <th colspan="2">修改个人信息</th>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">姓名</td>
+            <td><input type="text" name="name" id="name" value="$!currentUser.name"/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">部门</td>
+            <td><input type="text" name="department" id="department" value="$!currentUser.department"/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">邮箱</td>
+            <td><input type="text" name="email" id="email" value="$!currentUser.email"/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">电话</td>
+            <td><input type="text" name="phone" id="phone" value="$!currentUser.phone"/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">语言</td>
+            <td>
+                <select id="selectLanguage" id="locale" name="locale">
+                    <option value="en" #if($!currentUser.locale == "en")selected="selected"#end>English</option>
+                    <option value="zh" #if($!currentUser.locale == "zh")selected="selected"#end>简体中文</option>
+                    <option value="zh_TW" #if($!currentUser.locale == "zh_TW")selected="selected"#end>繁體中文</option>
+                </select>
+            ##                <input type="text" name="locale" id="locale" value="$!currentUser.locale"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center !important;" colspan="2">
+                <input type="hidden" name="id" value="$!currentUser.id">
+                <input type="button" onclick="modifyUser()" style="margin: 10px; padding: 5px 10px;" value="修改"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function modifyUser() {
+        var v_name = $("#name").val(), v_department = $("#department").val();
+        if (!v_name) {
+            showAlert("修改个人信息", "<font color='red' size='3'>姓名不能为空！</font>", "old_pwd");
+            return;
+        }
+        if (!v_department) {
+            showAlert("修改个人密码", "<font color='red' size='3'>部门不能为空！</font>", "new_pwd");
+            return;
+        }
+        $("#modifyUser").submit();
+//        showConfirm('确定修改密码?', 'passwds/' + $("#id").val() + '/changePwd')
+    }
+</script>

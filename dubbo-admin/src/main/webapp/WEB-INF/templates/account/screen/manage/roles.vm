@@ -1,0 +1,49 @@
+<br/>
+<form id="editRoles" action="editRoles" method="post">
+    <table style="width: 800px !important; margin: auto;" cellpadding="0" cellspacing="0"
+           class="list list_dubbo"
+           id="table_o">
+        <tr>
+            <th colspan="2"><input type="checkbox" onclick="checkAll('table_o', 'roleId', this.checked)"/>设置角色</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="hidden" name="ids" value="$!ids">
+                <input type="hidden" name="roleIds" id="roleIds" value="">
+                <input type="hidden" name="roleNames" id="roleNames" value="">
+                #set($currentRoleIds = ","+$currentUser.roleId+",")
+                #foreach($role in $roleList)
+                    <div style="width: 100px; float: left;">
+                        #set($targetRoleId = ","+$role.id+",")
+                        #if($ids.split(",").size() == 1)
+                            #if($!currentRoleIds.indexOf($targetRoleId)>-1)
+                                #set($isCheck = "checked")
+                            #end
+                        #end
+                        <input type="checkbox" name="roleId"
+                               title="$role.roleName" $!isCheck value="$role.id"/>
+                        <img src="/images/ico_user.png" width="12" height="12"/><span
+                            style="margin-left: 2px;">$role.roleName</span>
+                    </div>
+                #end
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center !important;" colspan="2">
+                <input type="button" onclick="editRoles()" style="margin: 10px; padding: 5px 10px;" value="保存"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function editRoles() {
+        var roleIds = "", roleName = "";
+        $(":checkbox:checked[name='roleId']").each(function () {
+            roleIds += "," + $(this).val();
+            roleName += "," + $(this).attr("title");
+        });
+        $("#roleIds").val(roleIds.substr(1));
+        $("#roleNames").val(roleName.substr(1));
+        $("#editRoles").submit();
+    }
+</script>

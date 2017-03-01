@@ -1,0 +1,38 @@
+<br/>
+<form id="modifyRole" action="modify" method="post">
+    <table style="width: 600px !important; margin: auto;" cellpadding="0" cellspacing="0"
+           class="list list_dubbo"
+           id="table_o">
+        <tr>
+            <th colspan="2">修改角色信息</th>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">角色名</td>
+            <td><input type="text" name="roleName" id="roleName" value="$!role.roleName"/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">状态</td>
+            <td>
+                <input type="radio" name="status" value="1" #if($!role.status == 1) checked #end/>启用
+                <input type="radio" name="status" style="margin-left: 15px;" value="0" #if($role.status == 0)
+                       checked #end/>禁用
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center !important;" colspan="2">
+                <input type="hidden" name="id" value="$!role.id">
+                <input type="button" onclick="modifyRole()" style="margin: 10px; padding: 5px 10px;" value="修改"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function modifyRole() {
+        var v_name = $("#roleName").val();
+        if (!v_name) {
+            showAlert("修改角色信息", "<font color='red' size='3'>角色名不能为空！</font>", "old_pwd");
+            return;
+        }
+        $("#modifyRole").submit();
+    }
+</script>

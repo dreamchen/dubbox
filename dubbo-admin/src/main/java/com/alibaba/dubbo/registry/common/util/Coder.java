@@ -38,5 +38,8 @@ public class Coder {
 	}
 	
 	private Coder() {}
-	
+
+	public static void main(String[] args) {
+		System.out.println(Coder.encodeMd5("admin:dubbo:admin"));
+	}
 }

@@ -1,0 +1,141 @@
+#if(!$currentUser)
+<font color="red">$i18n.get("not.found")</font> (<a href="services?keyword=*">$i18n.get("show.all")</a>)
+#else
+<div class="ico_btn">
+    <a href="roles/add"><img
+            src="$rootContextPath.getURI("images/ico_add.png")" width="12" height="12"/><span
+            class="ico_font">$i18n.get("add")</span></a>
+    <span class="ico_line">|</span>
+    <a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get(
+        "empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get(
+        "please.select")'); } else { showConfirm('$i18n.get(
+        "confirm.batch.force.mock")', 'roles/'+ getChecked('ids')+'/enable' );} return false;"><img
+            src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12"/><span
+            class="ico_font">$i18n.get("enable")</span></a>
+    <span class="ico_line">|</span>
+    <a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get(
+        "empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get(
+        "please.select")'); } else { showConfirm('$i18n.get(
+        "confirm.batch.force.mock")', 'roles/'+ getChecked('ids')+'/disable');} return false;"><img
+            src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12"/><span
+            class="ico_font">$i18n.get("disable")</span></a>
+    <span class="ico_line">|</span>
+    <a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get(
+        "empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get(
+        "please.select")'); } else { showConfirm('$i18n.get(
+        "confirm.batch.force.mock")', 'roles/'+ getChecked('ids')+'/delete');} return false;"><img
+            src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12"/><span
+            class="ico_font">$i18n.get("delete")</span></a>
+    <span class="ico_line">|</span>
+    <a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get(
+        "empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get(
+        "please.select")'); } else { showConfirm('$i18n.get(
+        "confirm.batch.force.mock")', 'roles/privileges?rids='+ getChecked('ids',','));} return false;"><img
+            src="$rootContextPath.getURI("images/ico_run.png")" width="12" height="12"/><span
+            class="ico_font">权限管理</span></a>
+</div>
+<br/>
+<table cellpadding="0" cellspacing="0" class="list list_dubbo" id="table_o">
+    <tr>
+        <th width="20"><input type="checkbox" onclick="checkAll('table_o', 'ids', this.checked)"/></th>
+        <th>角色名</th>
+        <th>应用权限</th>
+        <th>服务权限</th>
+        <th>管理权限</th>
+        <th>创建人</th>
+        <th>创建时间</th>
+        <th>修改时间</th>
+        <th width="50">状态</th>
+        <th>$i18n.get("operation")</th>
+    </tr>
+    #foreach($role in $roleList)
+        <tr>
+            <td><input type="checkbox" name="ids" value="$role.id"/></td>
+            <td>$!role.roleName</td>
+            #if($role.appPrivilege)
+            <td title="$role.appPrivilege.replaceAll(",","&#10;")">
+                #if($role.appPrivilege.indexOf(",")>0)
+                    $role.appPrivilege.split(",")[0]...
+                #else
+                    $!role.appPrivilege
+                #end
+            #else
+            <td title="$!role.appPrivilege">
+                $!role.appPrivilege
+            #end
+        </td>
+            #if($role.servicePrivilege)
+            <td title="$role.servicePrivilege.replaceAll(",","&#10;")">
+                #if($role.servicePrivilege.indexOf(",")>0)
+                    $role.servicePrivilege.split(",")[0]...
+                #else
+                    $!role.servicePrivilege
+                #end
+            #else
+            <td title="$!role.servicePrivilege">
+                $!role.servicePrivilege
+            #end
+        </td>
+            #if($role.managePrivilege)
+            <td title="$role.managePrivilege.replaceAll(",","&#10;")">
+                #if($role.managePrivilege.indexOf(",")>0)
+                    $role.managePrivilege.split(",")[0]...
+                #else
+                    $!role.managePrivilege
+                #end
+            #else
+            <td title="$!role.managePrivilege">
+                $!role.managePrivilege
+            #end
+        </td>
+            <td>$!role.creatorName</td>
+            <td>$!tool.formatDate($!role.created)</td>
+            <td>$!tool.formatDate($!role.modified)</td>
+            <td>
+                #if ($role.status =="1")
+                    <font color="green">启用</font>
+                #elseif($role.status == "2")
+                    <font color="blue">其他</font>
+                #else
+                    <font color="#a9a9a9">禁用</font>
+                #end
+            </td>
+            <td>
+            ##                #if($consumerServices.contains($service))
+            ##                    #if($mock == "force%3Areturn+null")
+                <a href="#" onclick="showConfirm('$i18n.get("enable")', 'roles/$role.id/enable'); return false;"><img
+                        src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12"/><span
+                        class="ico_font">$i18n.get("enable")</span></a>
+                <span class="ico_line">|</span>
+                <a href="#"
+                   onclick="showConfirm('$i18n.get("disable")', 'roles/$role.id/disable'); return false;"><img
+                        src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12"/><span
+                        class="ico_font">$i18n.get("disable")</span></a>
+                <span class="ico_line">|</span>
+                <a href="roles/$role.id/edit"><img
+                        src="$rootContextPath.getURI("images/ico_edit.png")" width="12" height="12"/><span
+                        class="ico_font">$i18n.get("edit")</span></a>
+                <span class="ico_line">|</span>
+                <a href="#" onclick="showConfirm('$i18n.get("delete")', 'roles/$role.id/delete'); return false;"><img
+                        src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12"/><span
+                        class="ico_font">$i18n.get("delete")</span></a>
+                <span class="ico_line">|</span>
+                <a href="roles/privileges?rids=$role.id"><img
+                        src="$rootContextPath.getURI("images/ico_run.png")" width="12" height="12"/><span
+                        class="ico_font">权限管理</span></a>
+            ##                    #elseif ($mock == "fail%3Areturn+null")
+            ##                        <a href="#" onclick="showConfirm('$i18n.get("confirm.force.mock")', 'services/0/shield?service=$service'); return false;"><img src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("force.mock")</span></a>
+            ##                        <span class="ico_line">|</span>
+            ##                        <a href="#" onclick="showConfirm('$i18n.get("confirm.cancel.mock")', 'services/0/recover?service=$service'); return false;"><img src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("cancel.mock")</span></a>
+            ##                    #else
+            ##                        <a href="#" onclick="showConfirm('$i18n.get("confirm.force.mock")', 'services/0/shield?service=$service'); return false;"><img src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("force.mock")</span></a>
+            ##                        <span class="ico_line">|</span>
+            ##                        <a href="#" onclick="showConfirm('$i18n.get("confirm.fail.mock")', 'services/0/tolerant?service=$service'); return false;"><img src="$rootContextPath.getURI("images/ico_run.png")" width="12" height="12" /><span class="ico_font">$i18n.get("fail.mock")</span></a>
+            ##                    #end
+            ##                #end
+            </td>
+        </tr>
+    #end
+</table>
+#end
+<div class="page">$i18n.get("page.total")$roleList.size()$i18n.get("page.records") </div>

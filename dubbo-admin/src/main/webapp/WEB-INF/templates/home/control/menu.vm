@@ -36,7 +36,7 @@
 									<option value="zh_TW" #if($language == "zh_TW")selected="selected"#end>繁體中文</option>
 								</select>
 							</div>
-						</td> 
+						</td>
 						<td style="padding-left: 10px;"><img src="$rootContextPath.getURI("images/ico_user.png")" width="14" height="14" border="0" /></td>
 						<td>
 							#if($currentUser.name)$currentUser.name#else$currentUser.username#end, $i18n.get("welcome")
@@ -84,8 +84,12 @@
 		</li>
 		<li id="unique_tab4" class="sub_nav"><a href="#" onclick="return false;" style="cursor:default;">$i18n.get("permissions")</a>
 			<ul>
-				#if($tool.checkUrl($currentUser,"/personal/infos"))<li><a href="$rootContextPath.getURI("/personal/infos")">$i18n.get("personal.set")</a></li>#end
-				#if($tool.checkUrl($currentUser,"/permissions/services"))<li><a href="$rootContextPath.getURI("/personal/infos")">$i18n.get("usermanage")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/account/infos"))<li><a href="$rootContextPath.getURI("/account/infos")">$i18n.get("account.set")</a></li>#end
+
+				#if($currentUser.managePrivilege.indexOf("R") >= 0)
+                    #if($tool.checkUrl($currentUser,"/account/manage"))<li><a href="$rootContextPath.getURI("/account/manage")">$i18n.get("manage")</a></li>#end
+                    #if($tool.checkUrl($currentUser,"/account/roles"))<li><a href="$rootContextPath.getURI("/account/roles")">$i18n.get("roles")</a></li>#end
+                #end
 			</ul>
 		</li>
 		<li id="unique_tab5" class="sub_nav"><a href="#" onclick="return false;" style="cursor:default;">$i18n.get("system.management")</a>

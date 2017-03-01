@@ -1,6 +1,6 @@
 <div class="ico_btn">
 	<a href="../weights"><img src="$rootContextPath.getURI("images/ico_back.png")" width="12" height="12" /><span class="ico_font">$i18n.get("back")</span></a>
-	#if($currentUser.role != "G")
+	#if($currentUser.managePrivilege.indexOf("G") < 0)
 	<span class="ico_line">|</span>
 	<a href="$weight.id/edit" >
 			<img src="$rootContextPath.getURI("images/ico_edit.png")" width="13" height="13" />

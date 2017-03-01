@@ -1,0 +1,67 @@
+<br/>
+<form id="createUser" action="create" method="post">
+    <table style="width: 600px !important; margin: auto;" cellpadding="0" cellspacing="0"
+           class="list list_dubbo"
+           id="table_o">
+        <tr>
+            <th colspan="2">添加用户</th>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">用户名</td>
+            <td><input type="text" name="username" id="username" value=""/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">姓名</td>
+            <td><input type="text" name="name" id="name" value=""/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">部门</td>
+            <td><input type="text" name="department" id="department" value=""/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">邮箱</td>
+            <td><input type="text" name="email" id="email" value=""/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">电话</td>
+            <td><input type="text" name="phone" id="phone" value=""/></td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">语言</td>
+            <td>
+                <select id="selectLanguage" id="locale" name="locale">
+                    <option value="en">English</option>
+                    <option value="zh" selected>简体中文</option>
+                    <option value="zh_TW">繁體中文</option>
+                </select>
+            ##                <input type="text" name="locale" id="locale" value="$!currentUser.locale"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right !important; width: 40%;">状态</td>
+            <td>
+                <input type="radio" name="status" checked value="1"/>启用
+                <input type="radio" name="status" style="margin-left: 15px;" value="0"/>禁用
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center !important;" colspan="2">
+                <input type="button" onclick="createUser()" style="margin: 10px; padding: 5px 10px;" value="添加"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function createUser() {
+        var v_name = $("#name").val(), v_department = $("#department").val();
+        if (!v_name) {
+            showAlert("添加用户", "<font color='red' size='3'>姓名不能为空！</font>", "old_pwd");
+            return;
+        }
+        if (!v_department) {
+            showAlert("添加用户", "<font color='red' size='3'>部门不能为空！</font>", "new_pwd");
+            return;
+        }
+        $("#createUser").submit();
+    }
+</script>
