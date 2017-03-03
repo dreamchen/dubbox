@@ -1,5 +1,5 @@
 <div class="ico_btn">
-	#if($currentUser.managePrivilege.indexOf("G") < 0)
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 	<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.forbid")', 'consumers/' + getChecked('ids') + '/forbid');} return false;"><img src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.forbid")</span></a>
 	<span class="ico_line">|</span>
 	<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.allow")', 'consumers/' + getChecked('ids') + '/allow');} return false;"><img src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.allow")</span></a>
@@ -33,7 +33,7 @@
     <th width="110">$i18n.get("mock"): <select onchange="searchTable('table_o', 4, this.value);" onclick="searchTable('table_o', 4, this.value);"><option value="">$i18n.get("all")</option><option value="$i18n.get("no.mocked")">$i18n.get("no.mocked")</option><option value="$i18n.get("force.mocked")">$i18n.get("force.mocked")</option><option value="$i18n.get("fail.mocked")">$i18n.get("fail.mocked")</option></select></th>
 	<th width="110">$i18n.get("Route"): <select onchange="searchTable('table_o', 5, this.value);" onclick="searchTable('table_o', 5, this.value);"><option value="">$i18n.get("all")</option><option value="$i18n.get("routed")">$i18n.get("routed")</option><option value="$i18n.get("unrouted")">$i18n.get("unrouted")</option></select></th>
 	<th width="110">$i18n.get("notify"): <select onchange="searchTable('table_o', 6, this.value);" onclick="searchTable('table_o', 6, this.value);"><option value="">$i18n.get("all")</option><option value="$i18n.get("notified")">$i18n.get("notified")</option><option value="$i18n.get("unnotified")">$i18n.get("unnotified")</option></select></th>
-	#if($currentUser.managePrivilege.indexOf("G") < 0)<th>$i18n.get("operation")</th>#end
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))<th>$i18n.get("operation")</th>#end
 </tr>
 #foreach($consumer in $consumers)
 <tr>
@@ -71,7 +71,7 @@
     		<font color="red">$i18n.get("NoProvider")</font>
     	#end
     </td>
-    #if($currentUser.managePrivilege.indexOf("G") < 0)
+    #if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 	<td>
 		#if($currentUser.hasServicePrivilege($consumer.service))
 		<a href="consumers/$consumer.id/edit"><img src="$rootContextPath.getURI("images/ico_edit.png")" width="12" height="12" /><span class="ico_font">$i18n.get("edit")</span></a>

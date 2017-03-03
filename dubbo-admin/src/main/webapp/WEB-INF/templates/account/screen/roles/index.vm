@@ -9,43 +9,43 @@
     <a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get(
         "empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get(
         "please.select")'); } else { showConfirm('$i18n.get(
-        "confirm.batch.force.mock")', 'roles/'+ getChecked('ids')+'/enable' );} return false;"><img
+        "confirm.batch.enable")', 'roles/'+ getChecked('ids')+'/enable' );} return false;"><img
             src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12"/><span
-            class="ico_font">$i18n.get("enable")</span></a>
+            class="ico_font">$i18n.get("batch.enable")</span></a>
     <span class="ico_line">|</span>
     <a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get(
         "empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get(
         "please.select")'); } else { showConfirm('$i18n.get(
-        "confirm.batch.force.mock")', 'roles/'+ getChecked('ids')+'/disable');} return false;"><img
+        "confirm.batch.disable")', 'roles/'+ getChecked('ids')+'/disable');} return false;"><img
             src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12"/><span
-            class="ico_font">$i18n.get("disable")</span></a>
+            class="ico_font">$i18n.get("batch.disable")</span></a>
     <span class="ico_line">|</span>
     <a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get(
         "empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get(
         "please.select")'); } else { showConfirm('$i18n.get(
-        "confirm.batch.force.mock")', 'roles/'+ getChecked('ids')+'/delete');} return false;"><img
+        "confirm.batch.delete")', 'roles/'+ getChecked('ids')+'/delete');} return false;"><img
             src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12"/><span
-            class="ico_font">$i18n.get("delete")</span></a>
+            class="ico_font">$i18n.get("batch.delete")</span></a>
     <span class="ico_line">|</span>
     <a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get(
         "empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get(
         "please.select")'); } else { showConfirm('$i18n.get(
-        "confirm.batch.force.mock")', 'roles/privileges?rids='+ getChecked('ids',','));} return false;"><img
+        "confirm.batch.privileges")', 'roles/privileges?rids='+ getChecked('ids',','));} return false;"><img
             src="$rootContextPath.getURI("images/ico_run.png")" width="12" height="12"/><span
-            class="ico_font">权限管理</span></a>
+            class="ico_font">$i18n.get("privileges")</span></a>
 </div>
 <br/>
 <table cellpadding="0" cellspacing="0" class="list list_dubbo" id="table_o">
     <tr>
         <th width="20"><input type="checkbox" onclick="checkAll('table_o', 'ids', this.checked)"/></th>
-        <th>角色名</th>
-        <th>应用权限</th>
-        <th>服务权限</th>
-        <th>管理权限</th>
-        <th>创建人</th>
-        <th>创建时间</th>
-        <th>修改时间</th>
-        <th width="50">状态</th>
+        <th>$i18n.get("rolename")</th>
+        <th>$i18n.get("appPrivilege")</th>
+        <th>$i18n.get("servicePrivilege")</th>
+        <th>$i18n.get("managePrivilege")</th>
+        <th>$i18n.get("creator")</th>
+        <th>$i18n.get("created")</th>
+        <th>$i18n.get("modified")</th>
+        <th width="50">$i18n.get("status")</th>
         <th>$i18n.get("operation")</th>
     </tr>
     #foreach($role in $roleList)
@@ -93,22 +93,22 @@
             <td>$!tool.formatDate($!role.modified)</td>
             <td>
                 #if ($role.status =="1")
-                    <font color="green">启用</font>
+                    <font color="green">$i18n.get("enabled")</font>
                 #elseif($role.status == "2")
-                    <font color="blue">其他</font>
+                    <font color="blue">$i18n.get("other")</font>
                 #else
-                    <font color="#a9a9a9">禁用</font>
+                    <font color="#a9a9a9">$i18n.get("enabled")</font>
                 #end
             </td>
             <td>
             ##                #if($consumerServices.contains($service))
             ##                    #if($mock == "force%3Areturn+null")
-                <a href="#" onclick="showConfirm('$i18n.get("enable")', 'roles/$role.id/enable'); return false;"><img
+                <a href="#" onclick="showConfirm('$i18n.get("confirm.enable")', 'roles/$role.id/enable'); return false;"><img
                         src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12"/><span
                         class="ico_font">$i18n.get("enable")</span></a>
                 <span class="ico_line">|</span>
                 <a href="#"
-                   onclick="showConfirm('$i18n.get("disable")', 'roles/$role.id/disable'); return false;"><img
+                   onclick="showConfirm('$i18n.get("confirm.disable")', 'roles/$role.id/disable'); return false;"><img
                         src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12"/><span
                         class="ico_font">$i18n.get("disable")</span></a>
                 <span class="ico_line">|</span>
@@ -116,23 +116,13 @@
                         src="$rootContextPath.getURI("images/ico_edit.png")" width="12" height="12"/><span
                         class="ico_font">$i18n.get("edit")</span></a>
                 <span class="ico_line">|</span>
-                <a href="#" onclick="showConfirm('$i18n.get("delete")', 'roles/$role.id/delete'); return false;"><img
+                <a href="#" onclick="showConfirm('$i18n.get("confirm.delete")', 'roles/$role.id/delete'); return false;"><img
                         src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12"/><span
                         class="ico_font">$i18n.get("delete")</span></a>
                 <span class="ico_line">|</span>
                 <a href="roles/privileges?rids=$role.id"><img
                         src="$rootContextPath.getURI("images/ico_run.png")" width="12" height="12"/><span
-                        class="ico_font">权限管理</span></a>
-            ##                    #elseif ($mock == "fail%3Areturn+null")
-            ##                        <a href="#" onclick="showConfirm('$i18n.get("confirm.force.mock")', 'services/0/shield?service=$service'); return false;"><img src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("force.mock")</span></a>
-            ##                        <span class="ico_line">|</span>
-            ##                        <a href="#" onclick="showConfirm('$i18n.get("confirm.cancel.mock")', 'services/0/recover?service=$service'); return false;"><img src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("cancel.mock")</span></a>
-            ##                    #else
-            ##                        <a href="#" onclick="showConfirm('$i18n.get("confirm.force.mock")', 'services/0/shield?service=$service'); return false;"><img src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("force.mock")</span></a>
-            ##                        <span class="ico_line">|</span>
-            ##                        <a href="#" onclick="showConfirm('$i18n.get("confirm.fail.mock")', 'services/0/tolerant?service=$service'); return false;"><img src="$rootContextPath.getURI("images/ico_run.png")" width="12" height="12" /><span class="ico_font">$i18n.get("fail.mock")</span></a>
-            ##                    #end
-            ##                #end
+                        class="ico_font">$i18n.get("privileges")</span></a>
             </td>
         </tr>
     #end

@@ -52,10 +52,10 @@ public class Roles extends Restful {
         role.setCreatorName(userExtend.getUsername());
         boolean success = this.roleService.addRole(role);
         if (success) {
-            context.put("message", "<font color='green' size='3'>角色添加成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/roles");
         } else {
-            context.put("message", "<font color='red' size='3'>角色添加失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -68,10 +68,10 @@ public class Roles extends Restful {
         role.setCreatorName(userExtend.getUsername());
         boolean success = this.roleService.updateRoleById(role, role.getId());
         if (success) {
-            context.put("message", "<font color='green' size='3'>修改角色信息成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/roles");
         } else {
-            context.put("message", "<font color='red' size='3'>修改角色信息失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -81,13 +81,6 @@ public class Roles extends Restful {
         String rids = request.getParameter("rids");
 
         UserExtend userExtend = (UserExtend) request.getSession().getAttribute(WebConstants.CURRENT_USER_KEY);
-        if (("," + uids + ",").indexOf("," + userExtend.getId() + ",") > -1) {
-            Tool tool = new Tool();
-            tool.setUserService(userService);
-            tool.setRoleService(roleService);
-            userExtend = tool.getUserWithAllPrivilege(userExtend.getId());
-            request.getSession().setAttribute(WebConstants.CURRENT_USER_KEY, userExtend);
-        }
 
         if (!StringUtils.isBlank(uids)) {
             context.put("uids", uids);
@@ -144,10 +137,17 @@ public class Roles extends Restful {
         }
 
         if (success) {
-            context.put("message", "<font color='green' size='3'>权限修改成功</font>");
+            if (("," + uids + ",").indexOf("," + userExtend.getId() + ",") > -1) {
+                Tool tool = new Tool();
+                tool.setUserService(userService);
+                tool.setRoleService(roleService);
+                userExtend = tool.getUserWithAllPrivilege(userExtend.getId());
+                request.getSession().setAttribute(WebConstants.CURRENT_USER_KEY, userExtend);
+            }
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/roles");
         } else {
-            context.put("message", "<font color='red' size='3'>权限修改失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -157,10 +157,10 @@ public class Roles extends Restful {
         role.setStatus("1");
         boolean success = this.roleService.updateRoleByIds(role, Arrays.asList(ids));
         if (success) {
-            context.put("message", "<font color='green' size='3'>角色启用成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/roles");
         } else {
-            context.put("message", "<font color='red' size='3'>角色启用失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -170,10 +170,10 @@ public class Roles extends Restful {
         role.setStatus("0");
         boolean success = this.roleService.updateRoleByIds(role, Arrays.asList(ids));
         if (success) {
-            context.put("message", "<font color='green' size='3'>角色禁用成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/roles");
         } else {
-            context.put("message", "<font color='red' size='3'>角色禁用失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -181,10 +181,10 @@ public class Roles extends Restful {
     public boolean delete(Long[] ids, Map<String, Object> context) {
         boolean success = this.roleService.deleteRoleByIds(Arrays.asList(ids));
         if (success) {
-            context.put("message", "<font color='green' size='3'>角色删除成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/roles");
         } else {
-            context.put("message", "<font color='red' size='3'>角色删除失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }

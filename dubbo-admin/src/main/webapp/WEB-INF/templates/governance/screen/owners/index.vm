@@ -1,5 +1,5 @@
 <div class="ico_btn">
-	#if($currentUser.managePrivilege.indexOf("G") < 0)
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 	<a href="owners/add"><img src="$rootContextPath.getURI("images/ico_add.png")" width="12" height="12" /><span class="ico_font">$i18n.get("add")</span></a>
 	#end
 </div>
@@ -10,7 +10,7 @@
 	#if(! $service)
 	<th>$i18n.get("service"): <input type="text" onkeyup="searchTable('table_o', 2, this.value);" onclick="searchTable('table_o', 2, this.value);" />&nbsp;<img src="$rootContextPath.getURI("images/ico_search.png")" width="12" height="12" /></th>
 	#end
-	#if($currentUser.managePrivilege.indexOf("G") < 0)<th>$i18n.get("operation")</th>#end
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))<th>$i18n.get("operation")</th>#end
 </tr>
 #foreach($owner in $owners)
 <tr>
@@ -18,7 +18,7 @@
 	#if(! $service)
 	<td><a href="services/$owner.service/owners">$owner.service</a></td>
 	#end
-	#if($currentUser.managePrivilege.indexOf("G") < 0)
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 	<td>
 		#if($currentUser.hasServicePrivilege($owner.service))
 		<a href="#" onclick="showConfirm('$i18n.get("confirm.delete")', '$owner.username', 'owners/0/delete?username=$owner.username#if(! $service)&service=$owner.service#end'); return false;"><img src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12" /><span class="ico_font">$i18n.get("delete")</span></a>

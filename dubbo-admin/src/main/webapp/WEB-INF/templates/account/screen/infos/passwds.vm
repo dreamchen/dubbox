@@ -4,24 +4,24 @@
        class="list list_dubbo"
        id="table_o">
     <tr>
-        <th colspan="2">修改个人密码</th>
+        <th colspan="2">$i18n.get("modify.account.password")</th>
     </tr>
     <tr>
-        <td style="text-align: right !important; width: 40%;">旧密码</td>
+        <td style="text-align: right !important; width: 40%;">$i18n.get("oldPassword")</td>
         <td><input type="password" name="oldPwd" id="old_pwd"/></td>
     </tr>
     <tr>
-        <td style="text-align: right !important; width: 40%;">新密码</td>
+        <td style="text-align: right !important; width: 40%;">$i18n.get("newPassword")</td>
         <td><input type="password" name="newPwd" id="new_pwd"/></td>
     </tr>
     <tr>
-        <td style="text-align: right !important; width: 40%;">确认密码</td>
+        <td style="text-align: right !important; width: 40%;">$i18n.get("confirmNewPassword")</td>
         <td><input type="password" name="rePwd" id="re_pwd"/></td>
     </tr>
     <tr>
         <td style="text-align: center !important;" colspan="2">
             <input type="hidden" name="id" value="$!currentUser.id">
-            <input type="button" onclick="checkPasswd()" style="margin: 10px; padding: 5px 10px;" value="确定"/>
+            <input type="button" onclick="checkPasswd()" style="margin: 10px; padding: 5px 10px;" value="$i18n.get("confirm")"/>
         </td>
     </tr>
 </table>
@@ -30,19 +30,19 @@
     function checkPasswd() {
         var old_val = $("#old_pwd").val(), new_val = $("#new_pwd").val(), re_pwd = $("#re_pwd").val();
         if (!old_val) {
-            showAlert("修改个人密码", "<font color='red' size='3'>旧密码不能为空！</font>", "old_pwd");
+            showAlert("$i18n.get("modify.account.password")", "<font color='red' size='3'>$i18n.get("modify.accountpwd.oldPwd.tip")</font>", "old_pwd");
             return;
         }
         if (!new_val) {
-            showAlert("修改个人密码", "<font color='red' size='3'>新密码不能为空！</font>", "new_pwd");
+            showAlert("$i18n.get("modify.account.password")", "<font color='red' size='3'>$i18n.get("modify.accountpwd.newPwd.tip")</font>", "new_pwd");
             return;
         }
         if (!re_pwd) {
-            showAlert("修改个人密码", "<font color='red' size='3'>确认密码不能为空！</font>", "re_pwd");
+            showAlert("$i18n.get("modify.account.password")", "<font color='red' size='3'>$i18n.get("modify.accountpwd.confirmPwd.tip")</font>", "re_pwd");
             return;
         }
         if (new_val != re_pwd) {
-            showAlert("修改个人密码", "<font color='red' size='3'>密码输入不一致！</font>", "re_pwd");
+            showAlert("$i18n.get("modify.account.password")", "<font color='red' size='3'>$i18n.get("modify.accountpwd.diffPwd.tip")</font>", "re_pwd");
             return;
         }
         $("#changePwd").submit();

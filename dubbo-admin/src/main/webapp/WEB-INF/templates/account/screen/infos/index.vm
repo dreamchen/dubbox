@@ -1,5 +1,5 @@
 #if(!$currentUser)
-<font color="red">$i18n.get("not.found")</font> (<a href="services?keyword=*">$i18n.get("show.all")</a>)
+<font color="red">$i18n.get("not.found")</font>
 #else
 <div class="ico_btn">
     <a href="/account/infos/edit"><img
@@ -13,18 +13,18 @@
 <br/>
 <table cellpadding="0" cellspacing="0" class="list list_dubbo" id="table_o">
     <tr>
-        <th>用户名</th>
-        <th>姓名</th>
-        <th>部门</th>
-        <th>角色</th>
-        <th>邮箱</th>
-        <th>电话</th>
-        <th>语言</th>
-        <th>应用权限</th>
-        <th>服务权限</th>
-        <th>管理权限</th>
-        <th>创建时间</th>
-        <th>状态</th>
+        <th>$i18n.get("username")</th>
+        <th>$i18n.get("displayName")</th>
+        <th>$i18n.get("department")</th>
+        <th>$i18n.get("role")</th>
+        <th>$i18n.get("email")</th>
+        <th>$i18n.get("phone")</th>
+        <th>$i18n.get("locale")</th>
+        <th>$i18n.get("appPrivilege")</th>
+        <th>$i18n.get("servicePrivilege")</th>
+        <th>$i18n.get("managePrivilege")</th>
+        <th>$i18n.get("created")</th>
+        <th>$i18n.get("status")</th>
     </tr>
     <tr>
         <td>$currentUser.username</td>
@@ -40,11 +40,11 @@
         <td>$!tool.formatDate($!currentUser.created)</td>
         <td>
             #if ($currentUser.status =="1")
-                <font color="green">启用</font>
+                <font color="green">$i18n.get("enabled")</font>
             #elseif($currentUser.status == "2")
-                <font color="blue">其他</font>
+                <font color="blue">$i18n.get("other")</font>
             #else
-                <font color="#a9a9a9">禁用</font>
+                <font color="#a9a9a9">$i18n.get("enabled")</font>
             #end
         </td>
     </tr>

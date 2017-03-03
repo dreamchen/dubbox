@@ -47,10 +47,10 @@ public class Infos extends Restful {
             com.alibaba.dubbo.registry.common.domain.User user = tool.getUserWithAllPrivilege(userExtend.getId());
             request.getSession().setAttribute(WebConstants.CURRENT_USER_KEY, user);
 
-            context.put("message", "修改个人信息成功");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/infos");
         } else {
-            context.put("message", "修改个人信息失败");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }

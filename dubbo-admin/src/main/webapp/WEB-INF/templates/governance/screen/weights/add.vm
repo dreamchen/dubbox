@@ -8,7 +8,7 @@
 		<th width="100">$i18n.get("service")&nbsp;&nbsp;<font color='red'>*</font></th>
 		<td width="300">
 			#if($service)
-				<input type="hidden" id="multiservice" name="service" value="$service" />$service
+				<input type="hidden" id="service" name="multiservice" value="$service" />$service
 			#else
 				<textarea id="service" name="multiservice" style="ime-mode:disabled" rows="2" cols="40"></textarea>
 				#if ($serviceList && $serviceList.size() > 0)

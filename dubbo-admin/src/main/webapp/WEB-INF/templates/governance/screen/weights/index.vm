@@ -1,5 +1,5 @@
 <div class="ico_btn">
-	#if($currentUser.managePrivilege.indexOf("G") < 0)
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 	<a href="weights/add#if($service)?service=$service#end"><img src="$rootContextPath.getURI("images/ico_add.png")" width="9" height="9" /><span class="ico_font">$i18n.get("add")</span></a>
 	<span class="ico_line">|</span>
 	<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.delete")', 'weights/' + getChecked('ids') + '/delete'); } return false;"><img src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.delete")</span></a>
@@ -14,7 +14,7 @@
 	<th>$i18n.get("service"): <input type="text" onkeyup="searchTable('table_o', 2, this.value);" onclick="searchTable('table_o', 2, this.value);" />&nbsp;<img src="$rootContextPath.getURI("images/ico_search.png")" width="12" height="12" /></th>
 	#end
 	<th width="50">$i18n.get("weights")</th>
-	#if($currentUser.managePrivilege.indexOf("G") < 0)<th width="135">$i18n.get("operation")</th>#end
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))<th width="135">$i18n.get("operation")</th>#end
 </tr>
 #foreach($weight in $weights)
 <tr>
@@ -24,7 +24,7 @@
 	<td><a href="services/$weight.service/weights">$weight.service</a></td>
 	#end
 	<td>$weight.weight</td>
-	#if($currentUser.managePrivilege.indexOf("G") < 0)
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 	<td>
 		<a href="weights/$weight.id/edit" >
 			<img src="$rootContextPath.getURI("images/ico_edit.png")" width="13" height="13" />

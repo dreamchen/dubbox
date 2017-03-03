@@ -4,62 +4,66 @@
            class="list list_dubbo"
            id="table_o">
         <tr>
-            <th colspan="2">添加用户</th>
+            <th colspan="2">$i18n.get("add")$i18n.get("users")</th>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">用户名</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("username")</td>
             <td><input type="text" name="username" id="username" value=""/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">姓名</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("displayName")</td>
             <td><input type="text" name="name" id="name" value=""/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">部门</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("department")</td>
             <td><input type="text" name="department" id="department" value=""/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">邮箱</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("email")</td>
             <td><input type="text" name="email" id="email" value=""/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">电话</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("phone")</td>
             <td><input type="text" name="phone" id="phone" value=""/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">语言</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("locale")</td>
             <td>
                 <select id="selectLanguage" id="locale" name="locale">
                     <option value="en">English</option>
                     <option value="zh" selected>简体中文</option>
                     <option value="zh_TW">繁體中文</option>
                 </select>
-            ##                <input type="text" name="locale" id="locale" value="$!currentUser.locale"/>
             </td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">状态</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("status")</td>
             <td>
-                <input type="radio" name="status" checked value="1"/>启用
-                <input type="radio" name="status" style="margin-left: 15px;" value="0"/>禁用
+                <input type="radio" name="status" checked value="1"/>$i18n.get("enable")
+                <input type="radio" name="status" style="margin-left: 15px;" value="0"/>$i18n.get("disable")
             </td>
         </tr>
         <tr>
             <td style="text-align: center !important;" colspan="2">
-                <input type="button" onclick="createUser()" style="margin: 10px; padding: 5px 10px;" value="添加"/>
+                <input type="button" onclick="createUser()" style="margin: 10px; padding: 5px 10px;"
+                       value="$i18n.get("add")"/>
             </td>
         </tr>
     </table>
 </form>
 <script>
     function createUser() {
-        var v_name = $("#name").val(), v_department = $("#department").val();
+        var v_name = $("#name").val(), v_department = $("#department").val(), v_email = $("#email").val();
         if (!v_name) {
-            showAlert("添加用户", "<font color='red' size='3'>姓名不能为空！</font>", "old_pwd");
+            showAlert("$i18n.get("add")$i18n.get("users")", "<font color='red' size='3'>$i18n.get("modify.accountinfo.displayName.tip")</font>", "name");
             return;
         }
         if (!v_department) {
-            showAlert("添加用户", "<font color='red' size='3'>部门不能为空！</font>", "new_pwd");
+            showAlert("$i18n.get("add")$i18n.get("users")", "<font color='red' size='3'>$i18n.get("modify.accountinfo.department.tip")</font>", "department");
+            return;
+        }
+        if (!v_email) {
+            showAlert("$i18n.get("add")$i18n.get("users")", "<font color='red' size='3'>$i18n.get("modify.accountinfo.email.tip")</font>", "email");
             return;
         }
         $("#createUser").submit();

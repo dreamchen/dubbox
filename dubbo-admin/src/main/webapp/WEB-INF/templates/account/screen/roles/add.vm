@@ -4,22 +4,23 @@
            class="list list_dubbo"
            id="table_o">
         <tr>
-            <th colspan="2">添加角色</th>
+            <th colspan="2">$i18n.get("add")$i18n.get("role")</th>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">角色名</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("rolename")</td>
             <td><input type="text" name="roleName" id="roleName" value=""/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">状态</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("status")</td>
             <td>
-                <input type="radio" name="status" checked value="1"/>启用
-                <input type="radio" name="status" style="margin-left: 15px;" value="0"/>禁用
+                <input type="radio" name="status" checked value="1"/>$i18n.get("enable")
+                <input type="radio" name="status" style="margin-left: 15px;" value="0"/>$i18n.get("disable")
             </td>
         </tr>
         <tr>
             <td style="text-align: center !important;" colspan="2">
-                <input type="button" onclick="createRole()" style="margin: 10px; padding: 5px 10px;" value="添加"/>
+                <input type="button" onclick="createRole()" style="margin: 10px; padding: 5px 10px;"
+                       value="$i18n.get("add")"/>
             </td>
         </tr>
     </table>
@@ -28,7 +29,7 @@
     function createRole() {
         var v_name = $("#roleName").val();
         if (!v_name) {
-            showAlert("添加角色", "<font color='red' size='3'>角色名不能为空！</font>", "old_pwd");
+            showAlert("$i18n.get("add")$i18n.get("role")", "<font color='red' size='3'>$i18n.get("rolename.tip")</font>", "old_pwd");
             return;
         }
         $("#createRole").submit();

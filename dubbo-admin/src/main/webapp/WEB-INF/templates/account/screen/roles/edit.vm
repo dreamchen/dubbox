@@ -4,24 +4,25 @@
            class="list list_dubbo"
            id="table_o">
         <tr>
-            <th colspan="2">修改角色信息</th>
+            <th colspan="2">$i18n.get("modify.roles")</th>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">角色名</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("rolename")</td>
             <td><input type="text" name="roleName" id="roleName" value="$!role.roleName"/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">状态</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("status")</td>
             <td>
-                <input type="radio" name="status" value="1" #if($!role.status == 1) checked #end/>启用
+                <input type="radio" name="status" value="1" #if($!role.status == 1) checked #end/>$i18n.get("enable")
                 <input type="radio" name="status" style="margin-left: 15px;" value="0" #if($role.status == 0)
-                       checked #end/>禁用
+                       checked #end/>$i18n.get("disable")
             </td>
         </tr>
         <tr>
             <td style="text-align: center !important;" colspan="2">
                 <input type="hidden" name="id" value="$!role.id">
-                <input type="button" onclick="modifyRole()" style="margin: 10px; padding: 5px 10px;" value="修改"/>
+                <input type="button" onclick="modifyRole()" style="margin: 10px; padding: 5px 10px;"
+                       value="$i18n.get("save")"/>
             </td>
         </tr>
     </table>
@@ -30,7 +31,8 @@
     function modifyRole() {
         var v_name = $("#roleName").val();
         if (!v_name) {
-            showAlert("修改角色信息", "<font color='red' size='3'>角色名不能为空！</font>", "old_pwd");
+            showAlert("$i18n.get("modify.roles")", "<font color='red' size='3'>$i18n.get(
+                "rolename.tip")</font>", "old_pwd");
             return;
         }
         $("#modifyRole").submit();

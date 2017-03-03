@@ -41,15 +41,6 @@ public class Manage extends Restful {
     public void roles(Map<String, Object> context) {
         String ids = request.getParameter("ids");
         UserExtend userExtend = (UserExtend) request.getSession().getAttribute(WebConstants.CURRENT_USER_KEY);
-        if (("," + ids + ",").indexOf("," + userExtend.getId() + ",") > -1) {
-
-            Tool tool = new Tool();
-            tool.setUserService(userService);
-            tool.setRoleService(roleService);
-            userExtend = tool.getUserWithAllPrivilege(userExtend.getId());
-
-            request.getSession().setAttribute(WebConstants.CURRENT_USER_KEY, userExtend);
-        }
 
         List<Role> roleList = this.roleService.findAllRoles();
         context.put("ids", ids);
@@ -73,10 +64,19 @@ public class Manage extends Restful {
         userDomain.setOperator(userExtend.getUsername());
         boolean success = this.userService.updateUser(userDomain, ids);
         if (success) {
-            context.put("message", "<font color='green' size='3'>权限修改成功</font>");
+            if (("," + ids + ",").indexOf("," + userExtend.getId() + ",") > -1) {
+
+                Tool tool = new Tool();
+                tool.setUserService(userService);
+                tool.setRoleService(roleService);
+                userExtend = tool.getUserWithAllPrivilege(userExtend.getId());
+
+                request.getSession().setAttribute(WebConstants.CURRENT_USER_KEY, userExtend);
+            }
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/manage");
         } else {
-            context.put("message", "<font color='red' size='3'>权限修改失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -86,15 +86,6 @@ public class Manage extends Restful {
         String rids = request.getParameter("rids");
 
         UserExtend userExtend = (UserExtend) request.getSession().getAttribute(WebConstants.CURRENT_USER_KEY);
-        if (("," + uids + ",").indexOf("," + userExtend.getId() + ",") > -1) {
-            userExtend = this.userService.findById(userExtend.getId());
-
-            Tool tool = new Tool();
-            tool.setUserService(userService);
-            tool.setRoleService(roleService);
-            userExtend = tool.getUserWithAllPrivilege(userExtend.getId());
-            request.getSession().setAttribute(WebConstants.CURRENT_USER_KEY, userExtend);
-        }
 
         if (!StringUtils.isBlank(uids)) {
             context.put("uids", uids);
@@ -151,10 +142,19 @@ public class Manage extends Restful {
         }
 
         if (success) {
-            context.put("message", "<font color='green' size='3'>权限修改成功</font>");
+            if (("," + uids + ",").indexOf("," + userExtend.getId() + ",") > -1) {
+                userExtend = this.userService.findById(userExtend.getId());
+
+                Tool tool = new Tool();
+                tool.setUserService(userService);
+                tool.setRoleService(roleService);
+                userExtend = tool.getUserWithAllPrivilege(userExtend.getId());
+                request.getSession().setAttribute(WebConstants.CURRENT_USER_KEY, userExtend);
+            }
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/manage");
         } else {
-            context.put("message", "<font color='red' size='3'>权限修改失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -174,10 +174,10 @@ public class Manage extends Restful {
 //        userExtend.setCreator(user.getUsername());
         boolean success = this.userService.createUser(userExtend);
         if (success) {
-            context.put("message", "<font color='green' size='3'>用户添加成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/manage");
         } else {
-            context.put("message", "<font color='red' size='3'>用户添加失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -191,10 +191,10 @@ public class Manage extends Restful {
             User user = tool.getUserWithAllPrivilege(userExtend.getId());
             request.getSession().setAttribute(WebConstants.CURRENT_USER_KEY, user);
 
-            context.put("message", "<font color='green' size='3'>修改个人信息成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/infos");
         } else {
-            context.put("message", "<font color='red' size='3'>修改个人信息失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -204,10 +204,10 @@ public class Manage extends Restful {
         userExtend.setStatus("1");
         boolean success = this.userService.updateUser(userExtend, Arrays.asList(ids));
         if (success) {
-            context.put("message", "<font color='green' size='3'>用户启用成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/manage");
         } else {
-            context.put("message", "<font color='red' size='3'>用户启用失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -217,10 +217,10 @@ public class Manage extends Restful {
         userExtend.setStatus("0");
         boolean success = this.userService.updateUser(userExtend, Arrays.asList(ids));
         if (success) {
-            context.put("message", "<font color='green' size='3'>用户禁用成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/manage");
         } else {
-            context.put("message", "<font color='red' size='3'>用户禁用失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }
@@ -228,10 +228,10 @@ public class Manage extends Restful {
     public boolean delete(Long[] ids, Map<String, Object> context) {
         boolean success = this.userService.deleteUserByIds(Arrays.asList(ids));
         if (success) {
-            context.put("message", "<font color='green' size='3'>用户删除成功</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/account/manage");
         } else {
-            context.put("message", "<font color='red' size='3'>用户删除失败</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
         }
         return success;
     }

@@ -4,26 +4,26 @@
            class="list list_dubbo"
            id="table_o">
         <tr>
-            <th colspan="2">修改个人信息</th>
+            <th colspan="2">$i18n.get("modify.accountinfo")</th>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">姓名</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("displayName")</td>
             <td><input type="text" name="name" id="name" value="$!currentUser.name"/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">部门</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("department")</td>
             <td><input type="text" name="department" id="department" value="$!currentUser.department"/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">邮箱</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("email")</td>
             <td><input type="text" name="email" id="email" value="$!currentUser.email"/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">电话</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("phone")</td>
             <td><input type="text" name="phone" id="phone" value="$!currentUser.phone"/></td>
         </tr>
         <tr>
-            <td style="text-align: right !important; width: 40%;">语言</td>
+            <td style="text-align: right !important; width: 40%;">$i18n.get("locale")</td>
             <td>
                 <select id="selectLanguage" id="locale" name="locale">
                     <option value="en" #if($!currentUser.locale == "en")selected="selected"#end>English</option>
@@ -36,20 +36,24 @@
         <tr>
             <td style="text-align: center !important;" colspan="2">
                 <input type="hidden" name="id" value="$!currentUser.id">
-                <input type="button" onclick="modifyUser()" style="margin: 10px; padding: 5px 10px;" value="修改"/>
+                <input type="button" onclick="modifyUser()" style="margin: 10px; padding: 5px 10px;" value="$i18n.get("save")"/>
             </td>
         </tr>
     </table>
 </form>
 <script>
     function modifyUser() {
-        var v_name = $("#name").val(), v_department = $("#department").val();
+        var v_name = $("#name").val(), v_department = $("#department").val(), v_email = $("#email").val();
         if (!v_name) {
-            showAlert("修改个人信息", "<font color='red' size='3'>姓名不能为空！</font>", "old_pwd");
+            showAlert("$i18n.get("modify.accountinfo")", "<font color='red' size='3'>$i18n.get("modify.accountinfo.displayName.tip")</font>", "name");
             return;
         }
         if (!v_department) {
-            showAlert("修改个人密码", "<font color='red' size='3'>部门不能为空！</font>", "new_pwd");
+            showAlert("$i18n.get("modify.accountinfo")", "<font color='red' size='3'>$i18n.get("modify.accountinfo.department.tip")</font>", "department");
+            return;
+        }
+        if (!v_email) {
+            showAlert("$i18n.get("modify.accountinfo")", "<font color='red' size='3'>$i18n.get("modify.accountinfo.email.tip")</font>", "email");
             return;
         }
         $("#modifyUser").submit();

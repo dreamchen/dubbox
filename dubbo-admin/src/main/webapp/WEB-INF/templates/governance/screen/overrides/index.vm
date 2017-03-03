@@ -1,5 +1,5 @@
 <div class="ico_btn">
-	#if($currentUser.managePrivilege.indexOf("G") < 0)
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 	<a href="overrides/add"><img src="$rootContextPath.getURI("images/ico_add.png")" width="9" height="9" /><span class="ico_font">$i18n.get("add")</span></a>
 	<span class="ico_line">|</span>
 	<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.delete")', 'overrides/' + getChecked('ids') + '/delete'); } return false;"><img src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.delete")</span></a>
@@ -16,7 +16,7 @@
 	 <th>$i18n.get("address")</th>
 	 <th>$i18n.get("parameters")</th>
 	 <th>$i18n.get("status")</th>
-	 #if($currentUser.managePrivilege.indexOf("G") < 0)<th>$i18n.get("operation")</th>#end
+	 #if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))<th>$i18n.get("operation")</th>#end
 </tr>
 #foreach($override in $overrides)
 <tr>
@@ -34,7 +34,7 @@
 		<font color="red">$i18n.get("Disabled")</font>
 	#end
 	</td>
-	#if($currentUser.managePrivilege.indexOf("G") < 0)
+	#if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 	<td>
 		<a href="overrides/$override.id" >
 			<img src="$rootContextPath.getURI("images/ico_show.png")" width="13" height="13" />

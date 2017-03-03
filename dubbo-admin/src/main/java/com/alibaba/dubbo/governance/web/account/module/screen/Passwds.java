@@ -56,7 +56,10 @@ public class Passwds extends Restful {
             }
         }
         String[] failedStr = StringUtils.isBlank(failList) ? new String[]{} : failList.split(",");
-        context.put("message", "<font color='green' size='3'>初始化密码</font><br/><font color='blue' size='3'>成功:" + (ids.length - failedStr.length) + "</font><font color='red' size='3'>失败:" + failedStr.length + "</font>");
+        context.put("message", "<font color='green' size='3'>" +
+                getMessage("restPassword") + "</font><br/><font color='blue' size='3'>" +
+                getMessage("success") + ":" + (ids.length - failedStr.length) + "</font><font color='red' size='3'>" +
+                getMessage("failure") + ":" + failedStr.length + "</font>");
         context.put("redirect", "/account/manage");
         return true;
     }
@@ -67,7 +70,7 @@ public class Passwds extends Restful {
         String newPwd = (String) context.get("newPwd");
         String rePwd = (String) context.get("rePwd");
         if (!newPwd.equals(rePwd)) {
-            context.put("message", "<font color='red' size='3'>密码输入不一致！</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("modify.accountpwd.diffPwd.tip") + "</font>");
             context.put("redirect", "/account/infos/passwds");
             return false;
         }
@@ -75,11 +78,11 @@ public class Passwds extends Restful {
         UserExtend userExtend = (UserExtend) request.getSession().getAttribute(WebConstants.CURRENT_USER_KEY);
         String oldPasswordDigest = Coder.encodeMd5(userExtend.getUsername() + ":" + User.REALM + ":" + oldPwd);
         if (userExtend == null || userExtend.getId() != id) {
-            context.put("message", "<font color='red' size='3'>请重新登录！</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("relogin") + "</font>");
             context.put("redirect", "/logout");
             return false;
         } else if (!userExtend.getPassword().equals(oldPasswordDigest)) {
-            context.put("message", "<font color='red' size='3'>旧密码输入错误！</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("passwd.oldwrong") + "</font>");
             context.put("redirect", "/account/infos/passwds");
             return false;
         } else {
@@ -90,10 +93,10 @@ public class Passwds extends Restful {
 
         boolean sucess = userService.updatePassword(userExtend, id);
         if (!sucess) {
-            context.put("message", "<font color='red' size='3'>" + getMessage("passwd.oldwrong") + "</font>");
+            context.put("message", "<font color='red' size='3'>" + getMessage("operation.failure") + "</font>");
             context.put("redirect", "/account/infos/passwds");
         } else {
-            context.put("message", "<font color='green' size='3'>密码修改成功！</font>");
+            context.put("message", "<font color='green' size='3'>" + getMessage("operation.success") + "</font>");
             context.put("redirect", "/logout");
         }
         return sucess;

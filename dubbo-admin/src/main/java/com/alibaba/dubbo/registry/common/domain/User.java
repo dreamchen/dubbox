@@ -67,7 +67,7 @@ public class User extends Entity {
     
     private String servicePrivilege;
 
-    private List<String> servicePrivileges;
+    public List<String> servicePrivileges;
     
     public User() {
     }

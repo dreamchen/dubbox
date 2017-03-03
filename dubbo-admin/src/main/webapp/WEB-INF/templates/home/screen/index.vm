@@ -118,7 +118,7 @@ $control.setTemplate("home:menu.vm")
     </div>
    </div>
    <table id="serviceCompletion" style="margin-top: 20px;">
-		 #if($currentUser.managePrivilege.indexOf("G") < 0)
+		 #if(!$currentUser.managePrivilege.equalsIgnoreCase("G"))
 		<tr>
 			<th>$i18n.get("add"): </th>
 			<td style="padding-left: 10px;">
